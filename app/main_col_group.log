@@ -1,0 +1,113 @@
+
+Database             Time                 Version
+-------------------- -------------------- ------------------------------
+Start: ORCL          29-JAN-2019 06:45:25 Oracle Database 12c 12.2.0.1.0
+
+As Is
+=====
+Team                             Apps
+------------------------------  -----
+team_name_2                         1
+Blackburn                          33
+QPR                              1517
+Liverpool                        1227
+Newcastle                        1247
+Wolves                             31
+Swansea                          1180
+Wigan                            1036
+Bolton                             37
+Everton                          1147
+Chelsea                          1147
+Man City                         1099
+Man Utd                          1231
+Stoke City                       1170
+West Brom                        1219
+Tottenham                        1288
+Fulham                           1209
+Southampton                      1110
+Sunderland                       1162
+West Ham                         1126
+team_name_1                         1
+Arsenal                           534
+Aston Villa                       685
+Norwich                          1229
+Reading                          1167
+Sorted by Key
+=============
+Team                             Apps
+------------------------------  -----
+Arsenal                           534
+Aston Villa                       685
+Blackburn                          33
+Bolton                             37
+Chelsea                          1147
+Everton                          1147
+Fulham                           1209
+Liverpool                        1227
+Man City                         1099
+Man Utd                          1231
+Newcastle                        1247
+Norwich                          1229
+QPR                              1517
+Reading                          1167
+Southampton                      1110
+Stoke City                       1170
+Sunderland                       1162
+Swansea                          1180
+Tottenham                        1288
+West Brom                        1219
+West Ham                         1126
+Wigan                            1036
+Wolves                             31
+team_name_1                         1
+team_name_2                         1
+Sorted by Value, Key
+====================
+Team                             Apps
+------------------------------  -----
+team_name_1                         1
+team_name_2                         1
+Wolves                             31
+Blackburn                          33
+Bolton                             37
+Arsenal                           534
+Aston Villa                       685
+Wigan                            1036
+Man City                         1099
+Southampton                      1110
+West Ham                         1126
+Chelsea                          1147
+Everton                          1147
+Sunderland                       1162
+Reading                          1167
+Stoke City                       1170
+Swansea                          1180
+Fulham                           1209
+West Brom                        1219
+Liverpool                        1227
+Norwich                          1229
+Man Utd                          1231
+Newcastle                        1247
+Tottenham                        1288
+QPR                              1517
+Timer Set: Col Group, Constructed at 29 Jan 2019 06:45:25, written at 06:45:25
+==============================================================================
+Timer             Elapsed         CPU       Calls       Ela/Call       CPU/Call
+-------------  ----------  ----------  ----------  -------------  -------------
+Load File            0.18        0.11           1        0.18200        0.11000
+List_Asis            0.00        0.00           1        0.00000        0.00000
+Sort_By_Key          0.00        0.01           1        0.00100        0.01000
+Sort_By_Value        0.00        0.00           1        0.00100        0.00000
+(Other)              0.00        0.00           1        0.00000        0.00000
+-------------  ----------  ----------  ----------  -------------  -------------
+Total                0.18        0.12           5        0.03680        0.02400
+-------------  ----------  ----------  ----------  -------------  -------------
+[Timer timed (per call in ms): Elapsed: 0.01064, CPU: 0.01064]
+
+PL/SQL procedure successfully completed.
+
+
+'END:'||TO_CHAR(SYSDATE,'DD-MON-YY
+----------------------------------
+End: 29-JAN-2019 06:45:25
+

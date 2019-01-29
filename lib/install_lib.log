@@ -1,0 +1,64 @@
+
+Database             Time                 Version
+-------------------- -------------------- ------------------------------
+Start: ORCL          29-JAN-2019 06:44:33 Oracle Database 12c 12.2.0.1.0
+
+Common type creation
+====================
+Create type L1_chr_arr
+
+Type created.
+
+
+Synonym created.
+
+
+Grant succeeded.
+
+Create type L1_num_arr
+
+Type created.
+
+
+Synonym created.
+
+
+Grant succeeded.
+
+Packages creation
+=================
+Create package Utils
+
+Package created.
+
+No errors.
+
+Package body created.
+
+No errors.
+
+Grant succeeded.
+
+
+Synonym created.
+
+Create package Timer_Set
+
+Package created.
+
+No errors.
+
+Package body created.
+
+No errors.
+
+Grant succeeded.
+
+
+Synonym created.
+
+
+'END:'||TO_CHAR(SYSDATE,'DD-MON-YY
+----------------------------------
+End: 29-JAN-2019 06:44:33
+
