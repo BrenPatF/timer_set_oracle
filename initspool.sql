@@ -9,6 +9,9 @@ COLUMN "Machine"        FORMAT A20
 SET SERVEROUTPUT ON
 SET TRIMSPOOL ON
 SPOOL &1..log
+REM
+REM GRANT SELECT ON v_$database is needed for this query
+REM
 SELECT 'Start: ' || dbs.name "Database", To_Char (SYSDATE,'DD-MON-YYYY HH24:MI:SS') "Time",
         Replace (Substr(ver.banner, 1, Instr(ver.banner, '64')-4), 'Enterprise Edition Release ', '') "Version"
   FROM v$database dbs,  v$version ver
