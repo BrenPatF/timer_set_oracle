@@ -1,7 +1,7 @@
 
 Database             Time                 Version
 -------------------- -------------------- ------------------------------
-Start: ORCL          29-JAN-2019 06:44:33 Oracle Database 12c 12.2.0.1.0
+Start: ORCL          12-APR-2019 06:26:13 Oracle Database 12c 12.2.0.1.0
 
 Common type creation
 ====================
@@ -60,5 +60,5 @@ Synonym created.
 
 'END:'||TO_CHAR(SYSDATE,'DD-MON-YY
 ----------------------------------
-End: 29-JAN-2019 06:44:33
+End: 12-APR-2019 06:26:13
 

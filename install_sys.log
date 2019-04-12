@@ -1,7 +1,7 @@
 
 Database             Time                 Version
 -------------------- -------------------- ------------------------------
-Start: ORCL          29-JAN-2019 06:44:20 Oracle Database 12c 12.2.0.1.0
+Start: ORCL          12-APR-2019 06:25:46 Oracle Database 12c 12.2.0.1.0
 
 old   1: CREATE USER &DEMO_USER IDENTIFIED BY &DEMO_USER
 new   1: CREATE USER lib IDENTIFIED BY lib
@@ -55,6 +55,11 @@ Grant succeeded.
 
 old   1: GRANT CREATE PROCEDURE TO &DEMO_USER
 new   1: GRANT CREATE PROCEDURE TO lib
+
+Grant succeeded.
+
+old   1: GRANT SELECT ON v_$database TO &DEMO_USER
+new   1: GRANT SELECT ON v_$database TO lib
 
 Grant succeeded.
 
@@ -113,6 +118,11 @@ new   1: GRANT CREATE PROCEDURE TO app
 
 Grant succeeded.
 
+old   1: GRANT SELECT ON v_$database TO &DEMO_USER
+new   1: GRANT SELECT ON v_$database TO app
+
+Grant succeeded.
+
 Directory input_dir
 
 Directory created.
@@ -129,5 +139,5 @@ Grant succeeded.
 
 'END:'||TO_CHAR(SYSDATE,'DD-MON-YY
 ----------------------------------
-End: 29-JAN-2019 06:44:20
+End: 12-APR-2019 06:25:46
 

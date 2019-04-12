@@ -54,6 +54,7 @@
 "scenarios" : { 
    "2 timer sets, ts-1: timer-1 called twice, timer-2 called in between; ts-2: timer-1 called twice, initTime called in between; all outputs; mocked": 
    {
+    "active_yn": "Y",
     "inp": {
         "Event Sequence": [
             "Set 1||CON|3.000|80",

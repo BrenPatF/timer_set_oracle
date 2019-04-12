@@ -268,8 +268,12 @@ BEGIN
   g_json := treat(je AS JSON_Object_T);
   l_sce_obj := g_json.get_Object('scenarios');
   l_keys := l_sce_obj.get_keys;
-  l_sces_4lis.EXTEND(l_keys.COUNT);
+
   FOR i IN 1..l_keys.COUNT LOOP
+    IF l_sce_obj.get_Object(l_keys(i)).get_String('active_yn') = 'N' THEN
+      CONTINUE;
+    END IF;
+    l_sces_4lis.EXTEND;
     l_groups := l_sce_obj.get_Object(l_keys(i)).get_Object('inp').get_keys;
     l_grps_3lis := L3_chr_arr();
     l_grps_3lis.EXTEND(l_groups.COUNT);
@@ -282,7 +286,7 @@ BEGIN
       END LOOP;
       l_grps_3lis(j) := l_recs_2lis;
     END LOOP;
-    l_sces_4lis(i) := l_grps_3lis;
+    l_sces_4lis(l_sces_4lis.COUNT) := l_grps_3lis;
   END LOOP;
   Timer_Set.Increment_Time (P_timer_set, 'Get Inputs');
 
@@ -316,6 +320,7 @@ PROCEDURE Set_Outputs(p_package_nm     VARCHAR2,       -- package name
   l_scenarios             JSON_Key_List;
   l_groups                JSON_Key_List;
   l_out_clob              CLOB;
+  i_act                   PLS_INTEGER := 0;
 
 BEGIN
 
@@ -323,6 +328,10 @@ BEGIN
   l_sce_obj := g_json.get_Object('scenarios');
   l_scenarios := l_sce_obj.get_keys;
   FOR i IN 1..l_scenarios.COUNT LOOP
+    IF l_sce_obj.get_Object(l_scenarios(i)).get_String('active_yn') = 'N' THEN
+      CONTINUE;
+    END IF;
+    i_act := i_act + 1;
     l_scenario_out_obj := JSON_Object_T();
     l_scenario_out_obj.put('inp', l_sce_obj.get_Object(l_scenarios(i)).get_Object('inp'));
     l_groups := l_sce_obj.get_Object(l_scenarios(i)).get_Object('out').get_keys;
@@ -331,9 +340,9 @@ BEGIN
 
       l_exp_list := l_sce_obj.get_Object(l_scenarios(i)).get_Object('out').get_Array(l_groups(j));
       l_act_list := JSON_Array_T();
-      IF p_act_3lis(i)(j) IS NOT NULL THEN
-        FOR k IN 1..p_act_3lis(i)(j).COUNT LOOP
-          l_act_list.Append(p_act_3lis(i)(j)(k));
+      IF p_act_3lis(i_act)(j) IS NOT NULL THEN
+        FOR k IN 1..p_act_3lis(i_act)(j).COUNT LOOP
+          l_act_list.Append(p_act_3lis(i_act)(j)(k));
         END LOOP;
       END IF;
       l_result_obj := JSON_Object_T();
@@ -390,8 +399,21 @@ BEGIN
               lang_context => l_lang_context,
               warning      => l_warning );
 
-  INSERT INTO tt_units (package_nm, procedure_nm, active_yn, input_data)
-  VALUES (p_package_nm, p_procedure_nm, p_active_yn, l_dest_lob);
+  MERGE INTO tt_units tgt
+  USING (SELECT p_package_nm    package_nm, 
+                p_procedure_nm  procedure_nm, 
+                p_active_yn     active_yn, 
+                l_dest_lob      input_data 
+           FROM DUAL) src
+     ON (tgt.package_nm   = src.package_nm 
+    AND  tgt.procedure_nm = src.procedure_nm)
+  WHEN NOT MATCHED THEN
+    INSERT (tgt.package_nm, tgt.procedure_nm, tgt.active_yn, tgt.input_data)
+    VALUES (src.package_nm, src.procedure_nm, src.active_yn, src.input_data)
+  WHEN MATCHED THEN
+    UPDATE
+       SET tgt.active_yn  = src.active_yn,
+           tgt.input_data = src.input_data;
   COMMIT;
   DBMS_LOB.FreeTemporary(l_dest_lob);
   DBMS_LOB.Close(l_src_file);
