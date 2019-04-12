@@ -31,7 +31,7 @@ The test program follows 'The Math Function Unit Testing design pattern':
 
 GitHub: https://github.com/BrenPatF/trapit_nodejs_tester
 
-Note that the unit test program generates an output timerset_out.json file that is processed by a
+Note that the unit test program generates an output tt_timer_set.tt_main_out.json file that is processed by a
 separate nodejs program, npm package trapit. This can be installed via npm (npm and nodejs
 required):
 
