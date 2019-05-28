@@ -108,7 +108,7 @@ SCENARIO 1: 2 timer sets, ts-1: timer-1 called twice, timer-2 called in between;
 
             #   Lines                                                                                                                 
             --  ----------------------------------------------------------------------------------------------------------------------
-            1   LIKE /Timer Set: Set 1, Constructed at .*/: Timer Set: Set 1, Constructed at 01 Jan 2019 00:00:03, written at 06:26:24
+            1   LIKE /Timer Set: Set 1, Constructed at .*/: Timer Set: Set 1, Constructed at 01 Jan 2019 00:00:03, written at 13:02:55
             2   ==========================================================================                                            
             3   Timer       Elapsed         CPU       Calls       Ela/Call       CPU/Call                                             
             4   -------  ----------  ----------  ----------  -------------  -------------                                             
@@ -118,7 +118,7 @@ SCENARIO 1: 2 timer sets, ts-1: timer-1 called twice, timer-2 called in between;
             8   -------  ----------  ----------  ----------  -------------  -------------                                             
             9   Total        210.86       59.19           4       52.71525       14.79750                                             
             10  -------  ----------  ----------  ----------  -------------  -------------                                             
-            11  LIKE /\[Timer timed.*\]/: [Timer timed (per call in ms): Elapsed: 0.01042, CPU: 0.01042]                              
+            11  LIKE /\[Timer timed.*\]/: [Timer timed (per call in ms): Elapsed: 0.00806, CPU: 0.00887]                              
 
       } 0 failed of 11: SUCCESS
       =========================
@@ -176,10 +176,10 @@ SCENARIO 2: As scenario 1 but not mocked, and with SELFs {
 
             #  Timer Name  Elapsed Time             CPU Time            #Calls
             -  ----------  -----------------------  ------------------  ------
-            1  Timer 1     IN [2.000,3.000]: 2.043  IN [0.5,1.5]: 1.02  2     
+            1  Timer 1     IN [2.000,3.000]: 2.043  IN [0.5,1.5]: 1.01  2     
             2  Timer 2     IN [1.000,3.000]: 1.022  IN [0.5,1.5]: .52   1     
-            3  (Other)     IN [4.000,5.000]: 4.085  IN [1.5,2.5]: 2.06  1     
-            4  Total       IN [6.000,8.000]: 7.15   IN [3.0,4.0]: 3.6   4     
+            3  (Other)     IN [4.000,5.000]: 4.086  IN [1.5,2.5]: 2.06  1     
+            4  Total       IN [6.000,8.000]: 7.151  IN [3.0,4.0]: 3.59  4     
 
       } 0 failed of 4: SUCCESS
       ========================
@@ -191,11 +191,11 @@ SCENARIO 2: As scenario 1 but not mocked, and with SELFs {
             -  ---------------------------------------------------------------------------------------------
             1  Timer       Elapsed         CPU       Calls       Ela/Call       CPU/Call                    
             2  -------  ----------  ----------  ----------  -------------  -------------                    
-            3  LIKE /Timer 1.*/: Timer 1        2.04        1.02           2        1.02150        0.51000  
+            3  LIKE /Timer 1.*/: Timer 1        2.04        1.01           2        1.02150        0.50500  
             4  LIKE /Timer 2.*/: Timer 2        1.02        0.52           1        1.02200        0.52000  
-            5  LIKE /\(Other\).*/: (Other)        4.09        2.06           1        4.08500        2.06000
+            5  LIKE /\(Other\).*/: (Other)        4.09        2.06           1        4.08600        2.06000
             6  -------  ----------  ----------  ----------  -------------  -------------                    
-            7  LIKE /Total.*/: Total          7.15        3.60           4        1.78750        0.90000    
+            7  LIKE /Total.*/: Total          7.15        3.59           4        1.78775        0.89750    
             8  -------  ----------  ----------  ----------  -------------  -------------                    
 
       } 0 failed of 8: SUCCESS
@@ -207,8 +207,8 @@ SCENARIO 2: As scenario 1 but not mocked, and with SELFs {
             #  Timer Name  Elapsed Time             CPU Time            #Calls
             -  ----------  -----------------------  ------------------  ------
             1  Timer 1     IN [4.000,5.000]: 4.086  IN [1.5,2.5]: 2.04  2     
-            2  (Other)     IN [2.000,3.000]: 2.343  IN [0.5,1.5]: 1.35  1     
-            3  Total       IN [6.000,7000]: 6.429   IN [2.5,3.5]: 3.39  3     
+            2  (Other)     IN [2.000,3.000]: 2.344  IN [0.5,1.5]: 1.35  1     
+            3  Total       IN [6.000,7000]: 6.43    IN [2.5,3.5]: 3.39  3     
 
       } 0 failed of 3: SUCCESS
       ========================
@@ -219,9 +219,9 @@ SCENARIO 2: As scenario 1 but not mocked, and with SELFs {
       GROUP 5: Self (unmocked) {
       ==========================
 
-            #  Elapsed Time                                               CPU Time                                                  
-            -  ---------------------------------------------------------  ----------------------------------------------------------
-            1  IN [0,0.5]: .00001204819277108433734939759036144578313253  IN [0,0.05]: .00001084337349397590361445783132530120481928
+            #  Elapsed Time         CPU Time             
+            -  -------------------  ---------------------
+            1  IN [0,0.5]: .000008  IN [0,0.05]: .0000072
 
       } 0 failed of 1: SUCCESS
       ========================
@@ -231,7 +231,7 @@ SCENARIO 2: As scenario 1 but not mocked, and with SELFs {
 
             #  Self Timing Ratios                                                                                                    
             -  ----------------------------------------------------------------------------------------------------------------------
-            1  LIKE /\[Timer timed \(per call in ms\): Elapsed: .*\]/: [Timer timed (per call in ms): Elapsed: 0.01087, CPU: 0.01196]
+            1  LIKE /\[Timer timed \(per call in ms\): Elapsed: .*\]/: [Timer timed (per call in ms): Elapsed: 0.00820, CPU: 0.00902]
 
       } 0 failed of 1: SUCCESS
       ========================
@@ -241,17 +241,17 @@ SCENARIO 2: As scenario 1 but not mocked, and with SELFs {
 
             #   Lines                                                                                                                 
             --  ----------------------------------------------------------------------------------------------------------------------
-            1   LIKE /Timer Set: Set 1, Constructed at .*/: Timer Set: Set 1, Constructed at 12 Apr 2019 06:26:24, written at 06:26:32
+            1   LIKE /Timer Set: Set 1, Constructed at .*/: Timer Set: Set 1, Constructed at 11 May 2019 13:02:55, written at 13:03:02
             2   ==========================================================================                                            
             3   Timer       Elapsed         CPU       Calls       Ela/Call       CPU/Call                                             
             4   -------  ----------  ----------  ----------  -------------  -------------                                             
-            5   LIKE /Timer 1.*/: Timer 1        2.04        1.02           2        1.02150        0.51000                           
+            5   LIKE /Timer 1.*/: Timer 1        2.04        1.01           2        1.02150        0.50500                           
             6   LIKE /Timer 2.*/: Timer 2        1.02        0.52           1        1.02200        0.52000                           
-            7   LIKE /(Other).*/: (Other)        4.09        2.06           1        4.08500        2.06000                           
+            7   LIKE /(Other).*/: (Other)        4.09        2.06           1        4.08600        2.06000                           
             8   -------  ----------  ----------  ----------  -------------  -------------                                             
-            9   LIKE /Total.*/: Total          7.15        3.60           4        1.78750        0.90000                             
+            9   LIKE /Total.*/: Total          7.15        3.59           4        1.78775        0.89750                             
             10  -------  ----------  ----------  ----------  -------------  -------------                                             
-            11  LIKE /\[Timer timed.*\]/: [Timer timed (per call in ms): Elapsed: 0.01163, CPU: 0.01163]                              
+            11  LIKE /\[Timer timed.*\]/: [Timer timed (per call in ms): Elapsed: 0.00833, CPU: 0.00750]                              
 
       } 0 failed of 11: SUCCESS
       =========================
@@ -472,7 +472,7 @@ SCENARIO 5: Non-default DP, mocked {
 
             #   Lines                                                                                                                 
             --  ----------------------------------------------------------------------------------------------------------------------
-            1   LIKE /Timer Set: Set 1, Constructed at .*/: Timer Set: Set 1, Constructed at 01 Jan 2019 00:00:03, written at 06:26:32
+            1   LIKE /Timer Set: Set 1, Constructed at .*/: Timer Set: Set 1, Constructed at 01 Jan 2019 00:00:03, written at 13:03:02
             2   ==========================================================================                                            
             3   Timer     Elapsed       CPU  Calls    Ela/Call    CPU/Call                                                            
             4   -------  --------  --------  -----  ----------  ----------                                                            
@@ -481,7 +481,7 @@ SCENARIO 5: Non-default DP, mocked {
             7   -------  --------  --------  -----  ----------  ----------                                                            
             8   Total        60.2      16.9      2      30.123       8.455                                                            
             9   -------  --------  --------  -----  ----------  ----------                                                            
-            10  LIKE /\[Timer timed.*\]/: [Timer timed (per call in ms): Elapsed: 0.010, CPU: 0.009]                                  
+            10  LIKE /\[Timer timed.*\]/: [Timer timed (per call in ms): Elapsed: 0.008, CPU: 0.008]                                  
 
       } 0 failed of 10: SUCCESS
       =========================
@@ -621,9 +621,9 @@ SCENARIO 7: Error DP, mocked {
             #  1 Message, 2 Stack                                                                                                                                                                                                                                             
             -  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             1  ORA-20000: Error, time_width + time_dp must be >= 6, actual: 4 + 1                                                                                                                                                                                             
-            2  UNTESTED: ORA-06512: at "LIB.UTILS", line 131
-ORA-06512: at "LIB.TIMER_SET", line 149
-ORA-06512: at "LIB.TIMER_SET", line 378
+            2  UNTESTED: ORA-06512: at "LIB.UTILS", line 349
+ORA-06512: at "LIB.TIMER_SET", line 152
+ORA-06512: at "LIB.TIMER_SET", line 389
 ORA-06512: at "LIB.TT_TIMER_SET", line 102
 ORA-06512: at "LIB.TT_TIMER_SET", line 188
 ORA-06512: at "LIB.TT_TIMER_SET", line 278

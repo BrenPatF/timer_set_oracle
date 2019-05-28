@@ -1,37 +1,37 @@
 
 Database             Time                 Version
 -------------------- -------------------- ------------------------------
-Start: ORCL          29-JAN-2019 06:45:25 Oracle Database 12c 12.2.0.1.0
+Start: ORCL          28-MAY-2019 06:21:36
 
 As Is
 =====
 Team                             Apps
 ------------------------------  -----
-team_name_2                         1
-Blackburn                          33
-QPR                              1517
-Liverpool                        1227
-Newcastle                        1247
-Wolves                             31
-Swansea                          1180
-Wigan                            1036
-Bolton                             37
-Everton                          1147
 Chelsea                          1147
-Man City                         1099
-Man Utd                          1231
-Stoke City                       1170
-West Brom                        1219
-Tottenham                        1288
-Fulham                           1209
-Southampton                      1110
-Sunderland                       1162
-West Ham                         1126
+Newcastle                        1247
+team_name_2                         1
 team_name_1                         1
-Arsenal                           534
-Aston Villa                       685
-Norwich                          1229
+Tottenham                        1288
+Liverpool                        1227
+Sunderland                       1162
+Wigan                            1036
+Man City                         1099
+Southampton                      1110
+Fulham                           1209
+Stoke City                       1170
+Wolves                             31
+West Ham                         1126
+Everton                          1147
 Reading                          1167
+West Brom                        1219
+Blackburn                          33
+Aston Villa                       685
+Swansea                          1180
+Bolton                             37
+Arsenal                           534
+QPR                              1517
+Man Utd                          1231
+Norwich                          1229
 Sorted by Key
 =============
 Team                             Apps
@@ -90,24 +90,24 @@ Man Utd                          1231
 Newcastle                        1247
 Tottenham                        1288
 QPR                              1517
-Timer Set: Col Group, Constructed at 29 Jan 2019 06:45:25, written at 06:45:25
+Timer Set: Col Group, Constructed at 28 May 2019 06:21:36, written at 06:21:37
 ==============================================================================
 Timer             Elapsed         CPU       Calls       Ela/Call       CPU/Call
 -------------  ----------  ----------  ----------  -------------  -------------
-Load File            0.18        0.11           1        0.18200        0.11000
+Load File            0.20        0.07           1        0.19600        0.07000
 List_Asis            0.00        0.00           1        0.00000        0.00000
-Sort_By_Key          0.00        0.01           1        0.00100        0.01000
+Sort_By_Key          0.00        0.00           1        0.00100        0.00000
 Sort_By_Value        0.00        0.00           1        0.00100        0.00000
 (Other)              0.00        0.00           1        0.00000        0.00000
 -------------  ----------  ----------  ----------  -------------  -------------
-Total                0.18        0.12           5        0.03680        0.02400
+Total                0.20        0.07           5        0.03960        0.01400
 -------------  ----------  ----------  ----------  -------------  -------------
-[Timer timed (per call in ms): Elapsed: 0.01064, CPU: 0.01064]
+[Timer timed (per call in ms): Elapsed: 0.00787, CPU: 0.00866]
 
 PL/SQL procedure successfully completed.
 
 
 'END:'||TO_CHAR(SYSDATE,'DD-MON-YY
 ----------------------------------
-End: 29-JAN-2019 06:45:25
+End: 28-MAY-2019 06:21:37
 

@@ -46,7 +46,7 @@ Timer_Set package.
 
 ***************************************************************************************************/
 
-PROCEDURE tt_Main;
+PROCEDURE Test_API;
 
 END TT_Timer_Set;
 /

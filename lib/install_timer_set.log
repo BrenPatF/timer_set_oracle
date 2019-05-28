@@ -1,13 +1,25 @@
 
 Database             Time                 Version
 -------------------- -------------------- ------------------------------
-Start: ORCL          28-MAY-2019 06:19:48
+Start: ORCL          28-MAY-2019 06:19:40
+
+Create package Timer_Set
+
+Package created.
+
+No errors.
+
+Package body created.
+
+No errors.
+
+Grant succeeded.
 
 
-PL/SQL procedure successfully completed.
+Synonym created.
 
 
 'END:'||TO_CHAR(SYSDATE,'DD-MON-YY
 ----------------------------------
-End: 28-MAY-2019 06:19:59
+End: 28-MAY-2019 06:19:40
 
