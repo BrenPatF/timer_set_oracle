@@ -5,15 +5,10 @@ Name: tt_timer_set.pks                 Author: Brendan Furey                    
 Package spec component in the Oracle timer_set_oracle module. This module facilitates code timing
 for instrumentation and other purposes, with very small footprint in both code and resource usage.
 
-GitHub: https://github.com/BrenPatF/timer_set_oracle
-
-See 'Code Timing and Object Orientation and Zombies' for the original idea implemented in Oracle 
-   PL/SQL, Perl and Java
-   http://www.scribd.com/doc/43588788/Code-Timing-and-Object-Orientation-and-Zombies
-   Brendan Furey, November 2010
+    GitHub: https://github.com/BrenPatF/timer_set_oracle
 
 There is an example main program and package showing how to use the Timer_Set package, and a unit 
-test program.
+test program. Unit testing is optional and depends on the module trapit_oracle_tester.
 ====================================================================================================
 |  Main/Test       |  Unit Module   |  Notes                                                       |
 |===================================================================================================
@@ -23,26 +18,20 @@ test program.
 |  r_tests         | *TT_Timer_Set* |  Unit testing the Timer_Set package                          |
 ====================================================================================================
 
-This file has the unit test TT_Timer_Set package spec (lib schema). Note that the test package is
-called by the unit test utility package Utils_TT, which reads the unit test details from a table,
-tt_units, populated by the install scripts. 
+This file has the TT_Timer_Set unit test package spec. Note that the test package is called by the
+unit test utility package Trapit, which reads the unit test details from a table, tt_units, 
+populated by the install scripts.
 
 The test program follows 'The Math Function Unit Testing design pattern':
 
-GitHub: https://github.com/BrenPatF/trapit_nodejs_tester
+    GitHub: https://github.com/BrenPatF/trapit_nodejs_tester
 
-Note that the unit test program generates an output tt_timer_set.tt_main_out.json file that is processed by a
-separate nodejs program, npm package trapit. This can be installed via npm (npm and nodejs 
-required):
+Note that the unit test program generates an output file, tt_timer_set.test_api_out.json, that is 
+processed by a separate nodejs program, npm package trapit (see README for further details).
 
-$ npm install trapit
-
-The output json file contains arrays of expected and actual records by group and scenario, in the
-format expected by the Javascript program. The Javascript program produces listings of the results
-in html and/or text format, and a sample set of listings is included in the folder test.
-
-See also the app schema main_col_group script which gives a simple example use-case for the
-Timer_Set package.
+The output JSON file contains arrays of expected and actual records by group and scenario, in the
+format expected by the nodejs program. This program produces listings of the results in HTML and/or
+text format, and a sample set of listings is included in the folder test_output.
 
 ***************************************************************************************************/
 

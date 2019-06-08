@@ -2,26 +2,19 @@ CREATE OR REPLACE PACKAGE Timer_Set AS
 /***************************************************************************************************
 Name: timer_set.pks                   Author: Brendan Furey                       Date: 29-Jan-2019
 
-Package spec component in the Oracle timer_set_oracle module. This module facilitates code timing
-for instrumentation and other purposes, with very small footprint in both code and resource usage.
+Package spec component in the timer_set_oracle module. This module facilitates code timing for 
+instrumentation and other purposes, with very small footprint in both code and resource usage.
 
-GitHub: https://github.com/BrenPatF/timer_set_oracle
+    GitHub: https://github.com/BrenPatF/timer_set_oracle
 
-See 'Code Timing and Object Orientation and Zombies' for the original idea implemented in Oracle 
-   PL/SQL, Perl and Java
-   http://www.scribd.com/doc/43588788/Code-Timing-and-Object-Orientation-and-Zombies
-   Brendan Furey, November 2010
-
-As well as the entry point Timer_Set package there is a helper package, Utils, of utility functions
 ====================================================================================================
 |  Package    |  Notes                                                                             |
 |===================================================================================================
 | *Timer_Set* |  Code timing package                                                               |
-----------------------------------------------------------------------------------------------------
-|  Utils      |  General utility functions                                                         |
 ====================================================================================================
 
-This file has the entry point Timer_Set package spec.
+This file has the Timer_Set package spec. See README for API specification, and the 
+main_col_group.sql script for simple examples of use.
 
 ***************************************************************************************************/
 

@@ -45,18 +45,18 @@ To run the example in a slqplus session from app subfolder (after installation):
 
 SQL> @main_col_group
 
-## API
-### l_timer_set   PLS_INTEGER := Timer_Set.Construct('ts_name')
-Constructs a new timer set with name `ts_name`, and integer handle `l_timer_set`.
+## API - Timer_Set
+### l_timer_set   PLS_INTEGER := Timer_Set.Construct(p_ts_name)
+Constructs a new timer set with name `p_ts_name`, and integer handle `l_timer_set`.
 
-### Timer_Set.Increment_Time(l_timer_set, timer_name)
-Increments the timing statistics (elapsed, user and system CPU, and number of calls) for a timer `timer_name` within the timer set `l_timer_set` with the times passed since the previous call to Increment_Time, Init_Time or the constructor of the timer set instance. Resets the statistics for timer set `l_timer_set` to the current time, so that the next call to increment_time measures from this point for its increment.
+### Timer_Set.Increment_Time(p_timer_set, p_timer_name)
+Increments the timing statistics (elapsed, user and system CPU, and number of calls) for a timer `p_timer_name` within the timer set `p_timer_set` with the times passed since the previous call to Increment_Time, Init_Time or the constructor of the timer set instance. Resets the statistics for timer set `p_timer_set` to the current time, so that the next call to increment_time measures from this point for its increment.
 
-### Timer_Set.Increment_Time(l_timer_set)
-Resets the statistics for timer set `l_timer_set` to the current time, so that the next call to increment_time measures from this point for its increment. This is only used where there are gaps between sections to be timed.
+### Timer_Set.Increment_Time(p_timer_set)
+Resets the statistics for timer set `p_timer_set` to the current time, so that the next call to increment_time measures from this point for its increment. This is only used where there are gaps between sections to be timed.
 
-### Timer_Set.Get_Timers(l_timer_set)
-Returns the results for timer set `l_timer_set` in an array of records of type `Timer_Set.timer_stat_rec`, with fields:
+### Timer_Set.Get_Timers(p_timer_set)
+Returns the results for timer set `p_timer_set` in an array of records of type `Timer_Set.timer_stat_rec`, with fields:
 
 * `name`: timer name
 * `ela_secs`: elapsed time in seconds
@@ -68,8 +68,8 @@ After a record for each named timer, in order of creation, there are two calcula
 * `Other`: differences between `Total` values and the sums of the named timers
 * `Total`: totals calculated from the times at timer set construction
 
-### Timer_Set.Format_Timers(l_timer_set, l_format_prms)
-Returns the results for timer set `l_timer_set` in an array of formatted strings, including column headers and formatting lines, with fields as in Get_Timers, times in seconds, and per call values added, with l_format_prms record parameter of type `Timer_Set.format_prm_rec` and default `Timer_Set.FORMAT_PRMS_DEF`:
+### Timer_Set.Format_Timers(p_timer_set, p_format_prms)
+Returns the results for timer set `p_timer_set` in an array of formatted strings, including column headers and formatting lines, with fields as in Get_Timers, times in seconds, and per call values added, with p_format_prms record parameter of type `Timer_Set.format_prm_rec` and default `Timer_Set.FORMAT_PRMS_DEF`:
 
 * `time_width`: width of time fields (excluding decimal places), default 8
 * `time_dp`: decimal places to show for absolute time fields, default 2
@@ -84,11 +84,11 @@ Returns a tuple, with fields:
 * `ela`: elapsed time per call in ms
 * `cpu`: CPU time per call in ms
 
-### Timer_Set.Format_Self_Timer(l_format_prms)
+### Timer_Set.Format_Self_Timer(p_format_prms)
 Static method to return the results from Get_Self_Timer in a formatted string, with parameter as Format_Timers (but any extra spaces are trimmed here).
 
-### Timer_Set.Format_Results(l_timer_set, l_format_prms)
-Returns the results for timer set `l_timer_set` in a formatted string, with parameters as Format_Timers. It uses the array returned from Format_Timers and includes a header line with timer set construction and writing times, and a footer of the self-timing values.
+### Timer_Set.Format_Results(p_timer_set, p_format_prms)
+Returns the results for timer set `p_timer_set` in a formatted string, with parameters as Format_Timers. It uses the array returned from Format_Timers and includes a header line with timer set construction and writing times, and a footer of the self-timing values.
 
 ## Installation
 The install depends on the pre-requisite module Utils, and `lib` schema refers to the schema in which Utils is installed.
@@ -104,12 +104,24 @@ The base Utils install is required for the base Timer_Set install, while the uni
 #### [Schema: lib; Folder: lib]
 - Run script from slqplus:
 ```
-SQL> @install_timer_set
+SQL> @install_timer_set app
 ```
-This creates the required components for the base install along with public synonyms and grants for them. This install is all that is required to use the package.
+This creates the required components for the base install along with grants for them to the app schema (passing none instead of app will bypass the grants). This install is all that is required to use the package within the lib schema and app (if passed, and then Install 3 is required). To grant privileges to another `schema`, run the grants script directly, passing `schema`:
+```
+SQL> @grant_timer_set_to_app schema
+```
 
-### Install 3: Install unit test code
+### Install 3: Create synonyms to lib
+#### [Schema: app; Folder: app]
+- Run script from slqplus:
+```
+SQL> @c_timer_set_syns lib
+```
+This install creates private synonyms to the lib schema. To create synonyms within another schema, run the synonyms script directly from that schema, passing lib schema.
+
+### Install 4: Install unit test code
 #### [Schema: lib; Folder: lib]
+This step requires the Trapit module option to have been installed as part of Install 1.
 - Copy the following file from the root folder to the server folder pointed to by the Oracle directory INPUT_DIR:
   - tt_timer_set.test_api_inp.json
 - Run script from slqplus:

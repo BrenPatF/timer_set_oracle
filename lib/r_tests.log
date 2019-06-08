@@ -1,13 +1,15 @@
 
 Database             Time                 Version
 -------------------- -------------------- ------------------------------
-Start: ORCL          28-MAY-2019 06:19:48
+Start: ORCL          08-JUN-2019 14:10:44
 
+old   3:   Trapit_Run.Run_Tests('&LIB');
+new   3:   Trapit_Run.Run_Tests('lib');
 
 PL/SQL procedure successfully completed.
 
 
 'END:'||TO_CHAR(SYSDATE,'DD-MON-YY
 ----------------------------------
-End: 28-MAY-2019 06:19:59
+End: 08-JUN-2019 14:10:55
 

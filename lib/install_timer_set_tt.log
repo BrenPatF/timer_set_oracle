@@ -1,7 +1,7 @@
 
 Database             Time                 Version
 -------------------- -------------------- ------------------------------
-Start: ORCL          28-MAY-2019 06:19:43
+Start: ORCL          08-JUN-2019 14:10:28
 
 Create package TT_Timer_Set
 
@@ -12,11 +12,13 @@ Package body created.
 
 No errors.
 Add the tt_units record, reading in JSON file from INPUT_DIR
+old   3:   Trapit.Add_Ttu ('TT_TIMER_SET', 'Test_API', '&LIB', 'Y', 'tt_timer_set.test_api_inp.json');
+new   3:   Trapit.Add_Ttu ('TT_TIMER_SET', 'Test_API', 'lib', 'Y', 'tt_timer_set.test_api_inp.json');
 
 PL/SQL procedure successfully completed.
 
 
 'END:'||TO_CHAR(SYSDATE,'DD-MON-YY
 ----------------------------------
-End: 28-MAY-2019 06:19:43
+End: 08-JUN-2019 14:10:28
 

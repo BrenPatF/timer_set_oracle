@@ -1,7 +1,7 @@
 
 Database             Time                 Version
 -------------------- -------------------- ------------------------------
-Start: ORCL          28-MAY-2019 06:19:40
+Start: ORCL          08-JUN-2019 14:08:43
 
 Create package Timer_Set
 
@@ -12,14 +12,18 @@ No errors.
 Package body created.
 
 No errors.
+Grant access to app (skip if none passed)
+
+PL/SQL procedure successfully completed.
+
+Granting Timer_Set components to app..
+old   1: GRANT EXECUTE ON Timer_Set TO &app
+new   1: GRANT EXECUTE ON Timer_Set TO app
 
 Grant succeeded.
 
 
-Synonym created.
-
-
 'END:'||TO_CHAR(SYSDATE,'DD-MON-YY
 ----------------------------------
-End: 28-MAY-2019 06:19:40
+End: 08-JUN-2019 14:08:43
 

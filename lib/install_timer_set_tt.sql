@@ -20,13 +20,18 @@ There are two install scripts, of which the second is optional:
 
 The lib schema refers to the schema in which oracle_plsql_utils was installed.
 ====================================================================================================
-|  Script                    |  Notes                                                              |
+|  Script                      |  Notes                                                            |
 |===================================================================================================
-|  install_timer_set.sql     |  Creates base components, including Timer_Set package, in lib       |
-|                            |  schema                                                             |
+|  install_timer_set.sql       |  Creates base components, including Timer_Set package, in lib     |
+|                              |  schema                                                           |
 ----------------------------------------------------------------------------------------------------
-| *install_timer_set_tt.sql* |  Creates unit test components that require a minimum Oracle         |
-|                            |  database version of 12.2 in lib schema                             |
+| *install_timer_set_tt.sql*   |  Creates unit test components that require a minimum Oracle       |
+|                              |  database version of 12.2 in lib schema                           |
+----------------------------------------------------------------------------------------------------
+|  grant_timer_set_to_app.sql  |  Grants privileges on Timer_Set components from lib to app schema |
+----------------------------------------------------------------------------------------------------
+|  c_timer_set_syns.sql        |  Creates synonyms for Timer_Set components in app schema to lib   |
+|                              |  schema                                                           |
 ====================================================================================================
 
 This file has the install script for the unit test components in the lib schema. It requires a
@@ -49,9 +54,10 @@ PROMPT Create package TT_Timer_Set
 @tt_timer_set.pkb
 
 PROMPT Add the tt_units record, reading in JSON file from INPUT_DIR
+DEFINE LIB=lib
 BEGIN
 
-  Trapit.Add_Ttu ('TT_TIMER_SET', 'Test_API', 'Y', 'tt_timer_set.test_api_inp.json');
+  Trapit.Add_Ttu ('TT_TIMER_SET', 'Test_API', '&LIB', 'Y', 'tt_timer_set.test_api_inp.json');
 
 END;
 /

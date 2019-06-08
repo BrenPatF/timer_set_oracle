@@ -1,15 +1,13 @@
 DEFINE app=&1
-@..\initspool install_timer_set
 /***************************************************************************************************
-Name: install_timer_set.sql            Author: Brendan Furey                       Date: 29-Jan-2019
+Name: grant_timer_set_to_app.sql       Author: Brendan Furey                       Date: 08-Jun-2019
 
-Installation script for the timer_set_oracle module, excluding the unit test components that require
-a minimum Oracle database version of 12.2. 
+Grants privileges on Timer_Set components from lib to app schema (passed as parameter).
 
 This module facilitates code timing for instrumentation and other purposes, with very small 
 footprint in both code and resource usage.
 
-    GitHub: https://github.com/BrenPatF/timer_set_oracle
+	  GitHub: https://github.com/BrenPatF/timer_set_oracle
 
 Pre-requisite: Installation of the oracle_plsql_utils module:
 
@@ -23,37 +21,27 @@ The lib schema refers to the schema in which oracle_plsql_utils was installed.
 ====================================================================================================
 |  Script                      |  Notes                                                            |
 |===================================================================================================
-| *install_timer_set.sql*      |  Creates base components, including Timer_Set package, in lib     |
+|  install_timer_set.sql       |  Creates base components, including Timer_Set package, in lib     |
 |                              |  schema                                                           |
 ----------------------------------------------------------------------------------------------------
 |  install_timer_set_tt.sql    |  Creates unit test components that require a minimum Oracle       |
 |                              |  database version of 12.2 in lib schema                           |
 ----------------------------------------------------------------------------------------------------
-|  grant_timer_set_to_app.sql  |  Grants privileges on Timer_Set components from lib to app schema |
+| *grant_timer_set_to_app.sql* |  Grants privileges on Timer_Set components from lib to app schema |
 ----------------------------------------------------------------------------------------------------
 |  c_timer_set_syns.sql        |  Creates synonyms for Timer_Set components in app schema to lib   |
 |                              |  schema                                                           |
 ====================================================================================================
 
-This file has the install script for the lib schema, excluding the unit test components that require
-a minimum Oracle database version of 12.2. This script should work in prior versions of Oracle,
-including v10 and v11 (although it has not been tested on them).
+This file grants privileges on Timer_Set components from lib to app schema.
 
-Components created, with grants to app schema (if passed) via grant_timer_set_to_app.sql:
+Grants applied:
 
-    Packages      Description
-    ==========    ==================================================================================
-    Timer_Set     Code timing package
+    Privilege           Object                   Object Type
+    ==================  =======================  ===================================================
+    Execute             Timer_Set                Package
 
 ***************************************************************************************************/
-
-PROMPT Create package Timer_Set
-@timer_set.pks
-@timer_set.pkb
-
-PROMPT Grant access to &app (skip if none passed)
-WHENEVER SQLERROR EXIT
-EXEC IF '&app' = 'none' THEN RAISE_APPLICATION_ERROR(-20000, 'Skipping schema grants'); END IF;
-@grant_timer_set_to_app &app
-
-@..\endspool
+PROMPT Granting Timer_Set components to &app...
+GRANT EXECUTE ON Timer_Set TO &app
+/
