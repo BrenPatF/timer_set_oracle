@@ -45,6 +45,8 @@ To run the example in a slqplus session from app subfolder (after installation):
 
 SQL> @main_col_group
 
+There is also a separate [module](https://github.com/BrenPatF/oracle_plsql_api_demos) demonstrating instrumentation and logging, code timing and unit testing of Oracle PL/SQL APIs.
+
 ## API - Timer_Set
 ### l_timer_set   PLS_INTEGER := Timer_Set.Construct(p_ts_name)
 Constructs a new timer set with name `p_ts_name`, and integer handle `l_timer_set`.
@@ -166,6 +168,7 @@ Windows 10, should be OS-independent
 - [Trapit - Oracle PL/SQL unit testing module](https://github.com/BrenPatF/trapit_oracle_tester)
 - [Log_Set - Oracle logging module](https://github.com/BrenPatF/log_set_oracle)
 - [Trapit - nodejs unit test processing package](https://github.com/BrenPatF/trapit_nodejs_tester)
+- [Oracle PL/SQL API Demos - demonstrating instrumentation and logging, code timing and unit testing of Oracle PL/SQL APIs](https://github.com/BrenPatF/oracle_plsql_api_demos)
 - [Code Timing and Object Orientation and Zombies, Brendan Furey, November 2010](http://www.scribd.com/doc/43588788/Code-Timing-and-Object-Orientation-and-Zombies)
    
 ## License

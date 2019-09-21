@@ -1,7 +1,7 @@
 
 Database             Time                 Version
 -------------------- -------------------- ------------------------------
-Start: ORCL          08-JUN-2019 14:09:41
+Start: ORCL          21-SEP-2019 13:28:55
 
 As Is
 =====
@@ -90,24 +90,24 @@ Man Utd                          1231
 Newcastle                        1247
 Tottenham                        1288
 QPR                              1517
-Timer Set: Col Group, Constructed at 08 Jun 2019 14:09:41, written at 14:09:41
+Timer Set: Col Group, Constructed at 21 Sep 2019 13:28:55, written at 13:28:55
 ==============================================================================
 Timer             Elapsed         CPU       Calls       Ela/Call       CPU/Call
 -------------  ----------  ----------  ----------  -------------  -------------
-Load File            0.15        0.09           1        0.14800        0.09000
-List_Asis            0.00        0.00           1        0.00000        0.00000
+Load File            0.15        0.12           1        0.15300        0.12000
+List_Asis            0.00        0.00           1        0.00100        0.00000
 Sort_By_Key          0.00        0.00           1        0.00100        0.00000
 Sort_By_Value        0.00        0.00           1        0.00100        0.00000
 (Other)              0.00        0.00           1        0.00000        0.00000
 -------------  ----------  ----------  ----------  -------------  -------------
-Total                0.15        0.09           5        0.03000        0.01800
+Total                0.16        0.12           5        0.03120        0.02400
 -------------  ----------  ----------  ----------  -------------  -------------
-[Timer timed (per call in ms): Elapsed: 0.00800, CPU: 0.00880]
+[Timer timed (per call in ms): Elapsed: 0.00781, CPU: 0.00703]
 
 PL/SQL procedure successfully completed.
 
 
 'END:'||TO_CHAR(SYSDATE,'DD-MON-YY
 ----------------------------------
-End: 08-JUN-2019 14:09:41
+End: 21-SEP-2019 13:28:56
 

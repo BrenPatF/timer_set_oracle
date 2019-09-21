@@ -297,12 +297,10 @@ END do_Event_List;
 
 /***************************************************************************************************
 
-purely_Wrap_API: Design pattern has the API call wrapped in a 'pure' procedure, called once per 
+purely_Wrap_API: Design pattern has the API call wrapped in a 'pure' function, called once per 
                  scenario, with the output 'actuals' array including everything affected by the API,
                  whether as output parameters, or on database tables, etc. The inputs are also
-                 extended from the API parameters to include any other effective inputs. Assertion 
-                 takes place after all scenarios and is against the extended outputs, with extended
-                 inputs also listed. The API call is timed
+                 extended from the API parameters to include any other effective inputs
 
 ***************************************************************************************************/
 FUNCTION purely_Wrap_API(
@@ -365,9 +363,10 @@ PROCEDURE Test_API IS
 
 BEGIN
 --
--- Every testing main section should be similar to this, with array setup, then loop over scenarios
--- making a 'pure' call to specific, local purely_Wrap_API, with single assertion call outside
--- the loop
+-- Every testing main section should be similar to this, with reading of the scenarios from JSON
+-- via Trapit into array, any initial setup required, then loop over scenarios making a 'pure'
+-- call to specific, local purely_Wrap_API, finally passing output array to Trapit to write the
+-- output JSON file
 --
   l_scenarios := Trapit.Get_Inputs(p_package_nm   => $$PLSQL_UNIT,
                                    p_procedure_nm => PROC_NM);
