@@ -1,5 +1,8 @@
 # Timer_Set
+<img src="mountains.png">
 Oracle PL/SQL code timing module.
+
+:stopwatch:
 
 Oracle PL/SQL package that facilitates code timing for instrumentation and other purposes, with very small footprint in both code and resource usage. Construction and reporting require only a single line each, regardless of how many timers are included in a set.
 
@@ -8,14 +11,14 @@ See [Code Timing and Object Orientation and Zombies](http://www.scribd.com/doc/4
 The package is tested using the Math Function Unit Testing design pattern, with test results in HTML and text format included. See test_output\timer_set.html for the unit test results root page.
 
 ## In this README...
-- [Usage (extract from main_col_group.sql)](https://github.com/BrenPatF/timer_set_oracle#usage-extract-from-main_col_groupsql)
-- [API - Timer_Set](https://github.com/BrenPatF/timer_set_oracle#api---timer_set)
-- [Installation](https://github.com/BrenPatF/timer_set_oracle#installation)
-- [Unit Testing](https://github.com/BrenPatF/timer_set_oracle#unit-testing)
-- [Operating System/Oracle Versions](https://github.com/BrenPatF/timer_set_oracle#operating-systemoracle-versions)
+- [Usage (extract from main_col_group.sql)](https://github.com/BrenPatF/sandbox#usage-extract-from-main_col_groupsql)
+- [API - Timer_Set](https://github.com/BrenPatF/sandbox#api---timer_set)
+- [Installation](https://github.com/BrenPatF/sandbox#installation)
+- [Unit Testing](https://github.com/BrenPatF/sandbox#unit-testing)
+- [Operating System/Oracle Versions](https://github.com/BrenPatF/sandbox#operating-systemoracle-versions)
 
 ## Usage (extract from main_col_group.sql)
-- [In this README...](https://github.com/BrenPatF/timer_set_oracle#in-this-readme)
+- [In this README...](https://github.com/BrenPatF/sandbox#in-this-readme)
 ```sql
 DECLARE
   l_timer_set   PLS_INTEGER := Timer_Set.Construct('Col Group');
@@ -56,15 +59,15 @@ SQL> @main_col_group
 There is also a separate [module](https://github.com/BrenPatF/oracle_plsql_api_demos) demonstrating instrumentation and logging, code timing and unit testing of Oracle PL/SQL APIs.
 
 ## API - Timer_Set
-- [In this README...](https://github.com/BrenPatF/timer_set_oracle#in-this-readme)
-- [Construct(p_ts_name)](https://github.com/BrenPatF/timer_set_oracle#l_timer_set---pls_integer--timer_setconstructp_ts_name)
-- [Increment_Time(p_timer_set, p_timer_name)](https://github.com/BrenPatF/timer_set_oracle#timer_setincrement_timep_timer_set-p_timer_name)
-- [Init_Time(p_timer_set)](https://github.com/BrenPatF/timer_set_oracle#timer_setinit_timep_timer_set)
-- [Get_Timers(p_timer_set)](https://github.com/BrenPatF/timer_set_oracle#timer_setget_timersp_timer_set)
-- [Format_Timers(p_timer_set, p_format_prms)](https://github.com/BrenPatF/timer_set_oracle#timer_setformat_timersp_timer_set-p_format_prms)
-- [Get_Self_Timer](https://github.com/BrenPatF/timer_set_oracle#timer_setget_self_timer)
-- [Format_Self_Timer(p_format_prms)](https://github.com/BrenPatF/timer_set_oracle#timer_setformat_self_timerp_format_prms)
-- [Format_Results(p_timer_set, p_format_prms)](https://github.com/BrenPatF/timer_set_oracle#timer_setformat_resultsp_timer_set-p_format_prms)
+- [In this README...](https://github.com/BrenPatF/sandbox#in-this-readme)
+- [Construct(p_ts_name)](https://github.com/BrenPatF/sandbox#l_timer_set---pls_integer--timer_setconstructp_ts_name)
+- [Increment_Time(p_timer_set, p_timer_name)](https://github.com/BrenPatF/sandbox#timer_setincrement_timep_timer_set-p_timer_name)
+- [Init_Time(p_timer_set)](https://github.com/BrenPatF/sandbox#timer_setinit_timep_timer_set)
+- [Get_Timers(p_timer_set)](https://github.com/BrenPatF/sandbox#timer_setget_timersp_timer_set)
+- [Format_Timers(p_timer_set, p_format_prms)](https://github.com/BrenPatF/sandbox#timer_setformat_timersp_timer_set-p_format_prms)
+- [Get_Self_Timer](https://github.com/BrenPatF/sandbox#timer_setget_self_timer)
+- [Format_Self_Timer(p_format_prms)](https://github.com/BrenPatF/sandbox#timer_setformat_self_timerp_format_prms)
+- [Format_Results(p_timer_set, p_format_prms)](https://github.com/BrenPatF/sandbox#timer_setformat_resultsp_timer_set-p_format_prms)
 ### l_timer_set   PLS_INTEGER := Timer_Set.Construct(p_ts_name)
 Constructs a new timer set with name `p_ts_name`, and integer handle `l_timer_set`.
 
@@ -75,7 +78,7 @@ Increments the timing statistics (elapsed, user and system CPU, and number of ca
 Resets the statistics for timer set `p_timer_set` to the current time, so that the next call to increment_time measures from this point for its increment. This is only used where there are gaps between sections to be timed.
 
 ### Timer_Set.Get_Timers(p_timer_set)
-- [API - Timer_Set](https://github.com/BrenPatF/timer_set_oracle#api---timer_set)
+- [API - Timer_Set](https://github.com/BrenPatF/sandbox#api---timer_set)
 
 Returns the results for timer set `p_timer_set` in an array of records of type `Timer_Set.timer_stat_rec`, with fields:
 
@@ -90,7 +93,7 @@ After a record for each named timer, in order of creation, there are two calcula
 * `Total`: totals calculated from the times at timer set construction
 
 ### Timer_Set.Format_Timers(p_timer_set, p_format_prms)
-- [API - Timer_Set](https://github.com/BrenPatF/timer_set_oracle#api---timer_set)
+- [API - Timer_Set](https://github.com/BrenPatF/sandbox#api---timer_set)
 
 Returns the results for timer set `p_timer_set` in an array of formatted strings, including column headers and formatting lines, with fields as in Get_Timers, times in seconds, and per call values added, with p_format_prms record parameter of type `Timer_Set.format_prm_rec` and default `Timer_Set.FORMAT_PRMS_DEF`:
 
@@ -100,7 +103,7 @@ Returns the results for timer set `p_timer_set` in an array of formatted strings
 * `calls_width`: width of calls field, default 10
 
 ### Timer_Set.Get_Self_Timer
-- [API - Timer_Set](https://github.com/BrenPatF/timer_set_oracle#api---timer_set)
+- [API - Timer_Set](https://github.com/BrenPatF/sandbox#api---timer_set)
 
 Static method to time the Increment_Time method as a way of estimating the overhead in using the timer set. Constructs a timer set instance and calls Increment_Time on it within a loop until 0.1s has elapsed.
 
@@ -113,21 +116,21 @@ Returns a tuple, with fields:
 Static method to return the results from Get_Self_Timer in a formatted string, with parameter as Format_Timers (but any extra spaces are trimmed here).
 
 ### Timer_Set.Format_Results(p_timer_set, p_format_prms)
-- [API - Timer_Set](https://github.com/BrenPatF/timer_set_oracle#api---timer_set)
+- [API - Timer_Set](https://github.com/BrenPatF/sandbox#api---timer_set)
 
 Returns the results for timer set `p_timer_set` in a formatted string, with parameters as Format_Timers. It uses the array returned from Format_Timers and includes a header line with timer set construction and writing times, and a footer of the self-timing values.
 
 ## Installation
-- [In this README...](https://github.com/BrenPatF/timer_set_oracle#in-this-readme)
-- [Install 1: Install pre-requisite modules](https://github.com/BrenPatF/timer_set_oracle#install-1-install-pre-requisite-modules)
-- [Install 2: Create Timer_Set components](https://github.com/BrenPatF/timer_set_oracle#install-2-create-timer_set-components)
-- [Install 3: Create synonyms to lib](https://github.com/BrenPatF/timer_set_oracle#install-3-create-synonyms-to-lib)
-- [Install 4: Install unit test code](https://github.com/BrenPatF/timer_set_oracle#install-4-install-unit-test-code)
+- [In this README...](https://github.com/BrenPatF/sandbox#in-this-readme)
+- [Install 1: Install pre-requisite modules](https://github.com/BrenPatF/sandbox#install-1-install-pre-requisite-modules)
+- [Install 2: Create Timer_Set components](https://github.com/BrenPatF/sandbox#install-2-create-timer_set-components)
+- [Install 3: Create synonyms to lib](https://github.com/BrenPatF/sandbox#install-3-create-synonyms-to-lib)
+- [Install 4: Install unit test code](https://github.com/BrenPatF/sandbox#install-4-install-unit-test-code)
 
 The install depends on the pre-requisite modules Utils and Trapit (unit testing only) and `lib` and `app` schemas refer to the schemas in which Utils and examples are installed, respectively.
 
 ### Install 1: Install pre-requisite modules
-- [Installation](https://github.com/BrenPatF/timer_set_oracle#installation)
+- [Installation](https://github.com/BrenPatF/sandbox#installation)
 
 The pre-requisite modules can be installed by following the instructions at [Utils on GitHub](https://github.com/BrenPatF/oracle_plsql_utils). This allows inclusion of the examples and unit tests for the modules. Alternatively, the next section shows how to install the modules directly without their examples or unit tests here (but with the Trapit module required for unit testing the Timer_Set module).
 
@@ -167,7 +170,7 @@ $ npm install trapit
 This should install the trapit nodejs package in a subfolder .\node_modules\trapit
 
 ### Install 2: Create Timer_Set components
-- [Installation](https://github.com/BrenPatF/timer_set_oracle#installation)
+- [Installation](https://github.com/BrenPatF/sandbox#installation)
 #### [Schema: lib; Folder: lib]
 - Run script from slqplus:
 ```
@@ -179,7 +182,7 @@ SQL> @grant_timer_set_to_app schema
 ```
 
 ### Install 3: Create synonyms to lib
-- [Installation](https://github.com/BrenPatF/timer_set_oracle#installation)
+- [Installation](https://github.com/BrenPatF/sandbox#installation)
 #### [Schema: app; Folder: app]
 - Run script from slqplus:
 ```
@@ -188,7 +191,7 @@ SQL> @c_timer_set_syns lib
 This install creates private synonyms to the lib schema. To create synonyms within another schema, run the synonyms script directly from that schema, passing lib schema.
 
 ### Install 4: Install unit test code
-- [Installation](https://github.com/BrenPatF/timer_set_oracle#installation)
+- [Installation](https://github.com/BrenPatF/sandbox#installation)
 
 This step requires the Trapit module option to have been installed as part of Install 1.
 
@@ -208,7 +211,9 @@ SQL> @install_timer_set_tt
 ```
 
 ## Unit Testing
-- [In this README...](https://github.com/BrenPatF/timer_set_oracle#in-this-readme)
+- [In this README...](https://github.com/BrenPatF/sandbox#in-this-readme)
+- [Wrapper Function Diagram](https://github.com/BrenPatF/sandbox#wrapper-function-diagram)
+- [Unit Test Summary Page](https://github.com/BrenPatF/sandbox#unit-test-summary-page)
 
 The unit test program (if installed) may be run from the lib subfolder:
 
@@ -232,8 +237,14 @@ In the non-mocked scenarios standard function calls are made to return elapsed a
 
 In this way we can test correctness of the timing aggregations, independence of timer sets etc. using the deterministic values; on the other hand, one of the key benefits of automated unit testing is to test the actual dependencies, and we do this in the non-mocked case by passing in 'sleep' times to the wrapper function and testing the outputs against ranges of values.
 
+### Wrapper Function Diagram
+- [Unit Testing](https://github.com/BrenPatF/sandbox#unit-testing)
+
 This diagram shows the input/output structure of the pure unit test wrapper function:
 <img src="timer_set_oracle.png">
+
+### Unit Test Summary Page
+- [Unit Testing](https://github.com/BrenPatF/sandbox#unit-testing)
 
 This is an image of the unit test summary page, and it shows the scenarios tested.
 <img src="timer_set_oracle_ut_root.png">
@@ -241,7 +252,7 @@ This is an image of the unit test summary page, and it shows the scenarios teste
 You can review the formatted unit test results obtained by the author here, [Unit Test Report: timer_set](http://htmlpreview.github.io/?https://github.com/BrenPatF/timer_set_oracle/blob/master/test_output/timer_set.html), and the files are available in the `test_output` subfolder [timer_set.html is the root page for the HTML version and timer_set.txt has the results in text format].
 
 ## Operating System/Oracle Versions
-- [In this README...](https://github.com/BrenPatF/timer_set_oracle#in-this-readme)
+- [In this README...](https://github.com/BrenPatF/sandbox#in-this-readme)
 ### Windows
 Windows 10, should be OS-independent
 ### Oracle
