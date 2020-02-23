@@ -241,7 +241,7 @@ In this way we can test correctness of the timing aggregations, independence of 
 - [Unit Testing](https://github.com/BrenPatF/timer_set_oracle#unit-testing)
 
 This diagram shows the input/output structure of the pure unit test wrapper function:
-<img src="timer_set_oracle.png">
+<img src="timer_set_oracleJSD.png">
 
 ### Unit Test Summary Page
 - [Unit Testing](https://github.com/BrenPatF/timer_set_oracle#unit-testing)
