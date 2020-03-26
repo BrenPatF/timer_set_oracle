@@ -122,17 +122,17 @@ Returns the results for timer set `p_timer_set` in a formatted string, with para
 
 ## Installation
 - [In this README...](https://github.com/BrenPatF/timer_set_oracle#in-this-readme)
-- [Install 1: Install pre-requisite modules](https://github.com/BrenPatF/timer_set_oracle#install-1-install-pre-requisite-modules)
+- [Install 1: Install prerequisite modules](https://github.com/BrenPatF/timer_set_oracle#install-1-install-prerequisite-modules)
 - [Install 2: Create Timer_Set components](https://github.com/BrenPatF/timer_set_oracle#install-2-create-timer_set-components)
 - [Install 3: Create synonyms to lib](https://github.com/BrenPatF/timer_set_oracle#install-3-create-synonyms-to-lib)
 - [Install 4: Install unit test code](https://github.com/BrenPatF/timer_set_oracle#install-4-install-unit-test-code)
 
-The install depends on the pre-requisite modules Utils and Trapit (unit testing only) and `lib` and `app` schemas refer to the schemas in which Utils and examples are installed, respectively.
+The install depends on the prerequisite modules Utils and Trapit (unit testing only) and `lib` and `app` schemas refer to the schemas in which Utils and examples are installed, respectively.
 
-### Install 1: Install pre-requisite modules
+### Install 1: Install prerequisite modules
 - [Installation](https://github.com/BrenPatF/timer_set_oracle#installation)
 
-The pre-requisite modules can be installed by following the instructions at [Utils on GitHub](https://github.com/BrenPatF/oracle_plsql_utils). This allows inclusion of the examples and unit tests for the modules. Alternatively, the next section shows how to install the modules directly without their examples or unit tests here (but with the Trapit module required for unit testing the Timer_Set module).
+The prerequisite modules can be installed by following the instructions at [Utils on GitHub](https://github.com/BrenPatF/oracle_plsql_utils). This allows inclusion of the examples and unit tests for the modules. Alternatively, the next section shows how to install the modules directly without their examples or unit tests here (but with the Trapit module required for unit testing the Timer_Set module).
 
 #### [Schema: sys; Folder: install_prereq] Create lib and app schemas and Oracle directory
 - install_sys.sql creates an Oracle directory, `input_dir`, pointing to 'c:\input'. Update this if necessary to a folder on the database server with read/write access for the Oracle OS user
