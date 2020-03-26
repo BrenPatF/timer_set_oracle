@@ -423,6 +423,49 @@
                "UNTESTED"
             ]
          }
+      },
+      "Timer Set with no timers":{  
+         "active_yn":"Y",
+         "inp":{  
+            "Event Sequence":[  
+               "Set 1||CON|3.000|80",
+               "Set 1||GETF|3.012|88"
+            ],
+            "Scalars":[  
+               "Y||||"
+            ]
+         },
+         "out":{  
+            "Set 1":[  
+
+            ],
+            "Set 1 (formatted)":[  
+               "Timer       Elapsed         CPU       Calls       Ela/Call       CPU/Call",
+               "-------  ----------  ----------  ----------  -------------  -------------",
+               "(Other)        0.01        0.08           1        0.01200        0.08000",
+               "-------  ----------  ----------  ----------  -------------  -------------",
+               "Total          0.01        0.08           1        0.01200        0.08000",
+               "-------  ----------  ----------  ----------  -------------  -------------"
+            ],
+            "Set 2":[  
+
+            ],
+            "Set 2 (formatted)":[  
+
+            ],
+            "Self (unmocked)":[  
+
+            ],
+            "Self (unmocked, formatted)":[  
+
+            ],
+            "Results":[  
+
+            ],
+            "Exception":[  
+
+            ]
+         }
       }
    }
 }

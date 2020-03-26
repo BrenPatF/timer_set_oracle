@@ -1,7 +1,7 @@
 
 Database             Time                 Version
 -------------------- -------------------- ------------------------------
-Start: ORCL          29-SEP-2019 08:50:06 Version 18.3.0.0.0
+Start: ORCL          26-MAR-2020 11:09:03 Version 19.3.0.0.0
 
 Create Utils synonyms
 =====================
@@ -51,5 +51,5 @@ No errors.
 
 'END:'||TO_CHAR(SYSDATE,'DD-MON-YY
 ----------------------------------
-End: 29-SEP-2019 08:50:06
+End: 26-MAR-2020 11:09:03
 
