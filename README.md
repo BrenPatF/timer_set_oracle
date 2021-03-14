@@ -135,7 +135,7 @@ The install depends on the prerequisite modules Utils and Trapit (unit testing o
 The prerequisite modules can be installed by following the instructions at [Utils on GitHub](https://github.com/BrenPatF/oracle_plsql_utils). This allows inclusion of the examples and unit tests for the modules. Alternatively, the next section shows how to install the modules directly without their examples or unit tests here (but with the Trapit module required for unit testing the Timer_Set module).
 
 #### [Schema: sys; Folder: install_prereq] Create lib and app schemas and Oracle directory
-- install_sys.sql creates an Oracle directory, `input_dir`, pointing to 'c:\input'. Update this if necessary to a folder on the database server with read/write access for the Oracle OS user
+install_sys.sql creates an Oracle directory, `input_dir`, pointing to 'c:\input'. Update this if necessary to a folder on the database server with read/write access for the Oracle OS user
 - Run script from slqplus:
 ```
 SQL> @install_sys

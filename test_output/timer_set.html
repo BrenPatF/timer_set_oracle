@@ -13,20 +13,20 @@ th {
   text-align: left;
   padding: 8px;
 }
-td {
-  font-weight: bold;
-  border: 1px solid #030303;
-  text-align: left;
-  padding: 8px;
-  white-space: pre;
-  font-family: "Courier New", Courier, monospace
-}
-
+          td {
+            font-weight: bold;
+            border: 1px solid #030303;
+            text-align: left;
+            padding: 8px;
+            white-space: pre;
+            font-family: arial, sans-serif;
+            font-size: 100%;
+          }
 h1 {margin-top: 0em; margin-bottom: 0em;
   font-family: arial, sans-serif;
   width: 100%;
   font-size: 300%;
-  background-color: #FF8033;
+  background-color: #FFFF00;
 }
 h2 {margin-top: 0em; margin-bottom: 0em;
   font-family: arial, sans-serif;
@@ -50,13 +50,16 @@ h4 {margin-top: 0em; margin-bottom: 0em;
 </head>
 <body>
 <h1>Unit Test Report: timer_set</h1>
-<h2><a href="2-timer-sets,-ts-1_-timer-1-called-twice,-timer-2-called-in-.html" target="_blank">SCENARIO 1: 2 timer sets, ts-1: timer-1 called twice, timer-2 called in between; ts-2: timer-1 called twice, initTime called in between; all outputs; mocked</a> : 0 failed of 8: SUCCESS</h2>
-<h2><a href="as-scenario-1-but-not-mocked,-and-with-selfs.html" target="_blank">SCENARIO 2: As scenario 1 but not mocked, and with SELFs</a> : 0 failed of 8: SUCCESS</h2>
-<h2><a href="large-numbers,-mocked.html" target="_blank">SCENARIO 3: Large numbers, mocked</a> : 0 failed of 8: SUCCESS</h2>
-<h2><a href="small-numbers,-mocked.html" target="_blank">SCENARIO 4: Small numbers, mocked</a> : 0 failed of 8: SUCCESS</h2>
-<h2><a href="non-default-dp,-mocked.html" target="_blank">SCENARIO 5: Non-default DP, mocked</a> : 0 failed of 8: SUCCESS</h2>
-<h2><a href="zero-dp,-mocked.html" target="_blank">SCENARIO 6: Zero DP, mocked</a> : 0 failed of 8: SUCCESS</h2>
-<h2><a href="error-dp,-mocked.html" target="_blank">SCENARIO 7: Error DP, mocked</a> : 0 failed of 8: SUCCESS</h2>
-<h2><a href="timer-set-with-no-timers.html" target="_blank">SCENARIO 8: Timer Set with no timers</a> : 0 failed of 8: SUCCESS</h2>
+<table>
+<tr><th>#</th><th>Scenario</th><th>Fails (of 8)</th><th>Status</th></tr>
+<tr><td>1</td><td><a href="2-timer-sets,-ts-1_-timer-1-called-twice,-timer-2-called-in-.html" target="_blank">2 timer sets, ts-1: timer-1 called twice, timer-2 called in between; ts-2: timer-1 called twice, initTime called in between; all outputs; mocked</a></td><td>0</td><td>SUCCESS</td></tr>
+<tr><td>2</td><td><a href="as-scenario-1-but-not-mocked,-and-with-selfs.html" target="_blank">As scenario 1 but not mocked, and with SELFs</a></td><td>0</td><td>SUCCESS</td></tr>
+<tr><td>3</td><td><a href="large-numbers,-mocked.html" target="_blank">Large numbers, mocked</a></td><td>0</td><td>SUCCESS</td></tr>
+<tr><td>4</td><td><a href="small-numbers,-mocked.html" target="_blank">Small numbers, mocked</a></td><td>0</td><td>SUCCESS</td></tr>
+<tr><td>5</td><td><a href="non-default-dp,-mocked.html" target="_blank">Non-default DP, mocked</a></td><td>0</td><td>SUCCESS</td></tr>
+<tr><td>6</td><td><a href="zero-dp,-mocked.html" target="_blank">Zero DP, mocked</a></td><td>0</td><td>SUCCESS</td></tr>
+<tr><td>7</td><td><a href="error-dp,-mocked.html" target="_blank">Error DP, mocked</a></td><td>0</td><td>SUCCESS</td></tr>
+<tr><td>8</td><td><a href="timer-set-with-no-timers.html" target="_blank">Timer Set with no timers</a></td><td>0</td><td>SUCCESS</td></tr>
+</table>
 <h1>Test scenarios: 0 failed of 8: SUCCESS</h1>
 </body></html>
