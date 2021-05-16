@@ -18,18 +18,18 @@ There are two install scripts, of which the second is optional:
 - install_timer_set.sql:    base code; requires base install of oracle_plsql_utils
 - install_timer_set_tt.sql: unit test code; requires unit test install section of oracle_plsql_utils
 
-The lib schema refers to the schema in which oracle_plsql_utils was installed.
+The lib schema refers to the schema in which oracle_plsql_utils was installed
 ====================================================================================================
 |  Script                      |  Notes                                                            |
-|===================================================================================================
+|==================================================================================================|
 |  install_timer_set.sql       |  Creates base components, including Timer_Set package, in lib     |
 |                              |  schema                                                           |
-----------------------------------------------------------------------------------------------------
+|------------------------------|-------------------------------------------------------------------|
 | *install_timer_set_tt.sql*   |  Creates unit test components that require a minimum Oracle       |
 |                              |  database version of 12.2 in lib schema                           |
-----------------------------------------------------------------------------------------------------
+|------------------------------|-------------------------------------------------------------------|
 |  grant_timer_set_to_app.sql  |  Grants privileges on Timer_Set components from lib to app schema |
-----------------------------------------------------------------------------------------------------
+|------------------------------|-------------------------------------------------------------------|
 |  c_timer_set_syns.sql        |  Creates synonyms for Timer_Set components in app schema to lib   |
 |                              |  schema                                                           |
 ====================================================================================================
@@ -57,7 +57,7 @@ PROMPT Add the tt_units record, reading in JSON file from INPUT_DIR
 DEFINE LIB=lib
 BEGIN
 
-  Trapit.Add_Ttu ('TT_TIMER_SET', 'Test_API', '&LIB', 'Y', 'tt_timer_set.test_api_inp.json');
+  Trapit.Add_Ttu ('TT_TIMER_SET', 'Purely_Wrap_Timer_Set', '&LIB', 'Y', 'tt_timer_set.purely_wrap_timer_set_inp.json');
 
 END;
 /

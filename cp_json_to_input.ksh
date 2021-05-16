@@ -1,1 +1,1 @@
-cp ./tt_timer_set.test_api_inp.json c:/input
+cp ./test_data/test_input/tt_timer_set.purely_wrap_timer_set_inp.json c:/input

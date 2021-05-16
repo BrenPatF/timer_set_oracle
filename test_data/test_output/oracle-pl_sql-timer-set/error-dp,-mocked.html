@@ -13,20 +13,19 @@ th {
   text-align: left;
   padding: 8px;
 }
-td {
-  font-weight: bold;
-  border: 1px solid #030303;
-  text-align: left;
-  padding: 8px;
-  white-space: pre;
-  font-family: "Courier New", Courier, monospace
-}
-
+    td {
+      font-weight: bold;
+      border: 1px solid #030303;
+      text-align: left;
+      padding: 8px;
+      white-space: pre;
+      font-family: "Courier New", Courier, monospace
+    }
 h1 {margin-top: 0em; margin-bottom: 0em;
   font-family: arial, sans-serif;
   width: 100%;
   font-size: 300%;
-  background-color: #FF8033;
+  background-color: #FFFF00;
 }
 h2 {margin-top: 0em; margin-bottom: 0em;
   font-family: arial, sans-serif;
@@ -49,7 +48,7 @@ h4 {margin-top: 0em; margin-bottom: 0em;
 </style>
 </head>
 <body>
-<h2>SCENARIO 6: Zero DP, mocked</h2>
+<h2>SCENARIO 7: Error DP, mocked</h2>
 <h3>INPUTS</h3>
 <h4>GROUP 1: Event Sequence</h4>
 <table>
@@ -62,28 +61,29 @@ h4 {margin-top: 0em; margin-bottom: 0em;
 <h4>GROUP 2: Scalars</h4>
 <table>
 <tr><th>#</th><th>Mock Flag</th><th>Time Width</th><th>Decimal Places (Totals)</th><th>Decimal Places (per call)</th><th>Calls Width</th></tr>
-<tr><td>1</td><td>Y</td><td>7</td><td>0</td><td>3</td><td>5</td></tr>
+<tr><td>1</td><td>Y</td><td>4</td><td>1</td><td>3</td><td>5</td></tr>
 </table>
 <h4></h4>
 <h3>OUTPUTS</h3>
 <h4>GROUP 1: Set 1: Empty as expected: SUCCESS</h4>
-<h4>GROUP 2: Set 1 (formatted)</h4>
-<table>
-<tr><th>#</th><th>Line</th></tr>
-<tr><td>1</td><td>Timer     Elapsed       CPU  Calls     Ela/Call     CPU/Call</td></tr>
-<tr><td>2</td><td>-------  --------  --------  -----  -----------  -----------</td></tr>
-<tr><td>3</td><td>Timer 1        30         8      1       30.123        8.460</td></tr>
-<tr><td>4</td><td>(Other)        30         8      1       30.123        8.450</td></tr>
-<tr><td>5</td><td>-------  --------  --------  -----  -----------  -----------</td></tr>
-<tr><td>6</td><td>Total          60        17      2       30.123        8.455</td></tr>
-<tr><td>7</td><td>-------  --------  --------  -----  -----------  -----------</td></tr>
-</table>
-<h4>0 failed of 7: SUCCESS</h4>
+<h4>GROUP 2: Set 1 (formatted): Empty as expected: SUCCESS</h4>
 <h4>GROUP 3: Set 2: Empty as expected: SUCCESS</h4>
 <h4>GROUP 4: Set 2 (formatted): Empty as expected: SUCCESS</h4>
 <h4>GROUP 5: Self (unmocked): Empty as expected: SUCCESS</h4>
 <h4>GROUP 6: Self (unmocked, formatted): Empty as expected: SUCCESS</h4>
 <h4>GROUP 7: Results: Empty as expected: SUCCESS</h4>
-<h4>GROUP 8: Exception: Empty as expected: SUCCESS</h4>
+<h4>GROUP 8: Exception</h4>
+<table>
+<tr><th>#</th><th>1 Message, 2 Stack</th></tr>
+<tr><td>1</td><td>ORA-20000: Error, time_width + time_dp must be >= 6, actual: 4 + 1</td></tr>
+<tr><td>2</td><td>UNTESTED: ORA-06512: at "LIB.UTILS", line 375
+ORA-06512: at "LIB.TIMER_SET", line 145
+ORA-06512: at "LIB.TIMER_SET", line 386
+ORA-06512: at "LIB.TT_TIMER_SET", line 94
+ORA-06512: at "LIB.TT_TIMER_SET", line 180
+ORA-06512: at "LIB.TT_TIMER_SET", line 270
+</td></tr>
+</table>
+<h4>0 failed of 2: SUCCESS</h4>
 <h2>0 failed of 8: SUCCESS</h2>
 </body></html>

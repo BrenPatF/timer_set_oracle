@@ -8,34 +8,38 @@ for instrumentation and other purposes, with very small footprint in both code a
     GitHub: https://github.com/BrenPatF/timer_set_oracle
 
 There is an example main program and package showing how to use the Timer_Set package, and a unit 
-test program. Unit testing is optional and depends on the module trapit_oracle_tester.
+test program. Unit testing is optional and depends on the module trapit_oracle_tester
 ====================================================================================================
 |  Main/Test       |  Unit Module   |  Notes                                                       |
-|===================================================================================================
+|==================================================================================================|
 |  main_col_group  |  Col_Group     |  Simple file-reading and group-counting module, with logging |
 |                  |                |  to file. Example of usage of Timer_Set package              |
-----------------------------------------------------------------------------------------------------
-|  r_tests         | *TT_Timer_Set* |  Unit testing the Timer_Set package                          |
+|------------------|----------------|--------------------------------------------------------------|
+|  r_tests         | *TT_Timer_Set* |  Unit testing the Timer_Set package. Trapit_Run is installed |
+|                  |  Trapit_Run    |  aa part of a separate module, trapit_oracle_tester          |
 ====================================================================================================
 
 This file has the TT_Timer_Set unit test package spec. Note that the test package is called by the
-unit test utility package Trapit, which reads the unit test details from a table, tt_units, 
+unit test utility package Trapit_Run, which reads the unit test details from a table, tt_units, 
 populated by the install scripts.
 
 The test program follows 'The Math Function Unit Testing design pattern':
 
     GitHub: https://github.com/BrenPatF/trapit_nodejs_tester
 
-Note that the unit test program generates an output file, tt_timer_set.test_api_out.json, that is 
-processed by a separate nodejs program, npm package trapit (see README for further details).
+Note that the unit test program generates an output file,
+tt_timer_set.purely_wrap_timer_set_out.json, that is processed by a separate nodejs program, npm
+package trapit (see README for further details).
 
 The output JSON file contains arrays of expected and actual records by group and scenario, in the
 format expected by the nodejs program. This program produces listings of the results in HTML and/or
-text format, and a sample set of listings is included in the folder test_output.
+text format, and a sample set of listings is included in the folder test_data\test_output
 
 ***************************************************************************************************/
 
-PROCEDURE Test_API;
+FUNCTION Purely_Wrap_Timer_Set(
+              p_inp_3lis                     L3_chr_arr)
+              RETURN                         L2_chr_arr;
 
 END TT_Timer_Set;
 /

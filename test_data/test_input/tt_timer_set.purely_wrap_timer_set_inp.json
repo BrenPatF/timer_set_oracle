@@ -1,6 +1,6 @@
 {
    "meta":{  
-      "title":"timer_set",
+      "title":"Oracle PL/SQL Timer Set",
       "inp":{  
          "Event Sequence":[  
             "Set Name",

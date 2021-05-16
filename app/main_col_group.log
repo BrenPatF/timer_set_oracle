@@ -1,7 +1,7 @@
 
 Database             Time                 Version
 -------------------- -------------------- ------------------------------
-Start: ORCL          26-MAR-2020 11:10:37
+Start: ORCL          16-MAY-2021 07:52:48
 
 As Is
 =====
@@ -90,24 +90,24 @@ Man Utd                          1231
 Newcastle                        1247
 Tottenham                        1288
 QPR                              1517
-Timer Set: Col Group, Constructed at 26 Mar 2020 11:10:37, written at 11:10:37
+Timer Set: Col Group, Constructed at 16 May 2021 07:52:48, written at 07:52:49
 ==============================================================================
 Timer             Elapsed         CPU       Calls       Ela/Call       CPU/Call
 -------------  ----------  ----------  ----------  -------------  -------------
-Load File            0.21        0.15           1        0.20700        0.15000
-List_Asis            0.00        0.00           1        0.00100        0.00000
-Sort_By_Key          0.00        0.01           1        0.00200        0.01000
-Sort_By_Value        0.00        0.00           1        0.00200        0.00000
+Load File            0.99        0.31           1        0.98700        0.31000
+List_Asis            0.01        0.01           1        0.00700        0.01000
+Sort_By_Key          0.00        0.01           1        0.00400        0.01000
+Sort_By_Value        0.00        0.00           1        0.00400        0.00000
 (Other)              0.00        0.00           1        0.00000        0.00000
 -------------  ----------  ----------  ----------  -------------  -------------
-Total                0.21        0.16           5        0.04240        0.03200
+Total                1.00        0.33           5        0.20040        0.06600
 -------------  ----------  ----------  ----------  -------------  -------------
-[Timer timed (per call in ms): Elapsed: 0.00980, CPU: 0.00980]
+[Timer timed (per call in ms): Elapsed: 0.01923, CPU: 0.01923]
 
 PL/SQL procedure successfully completed.
 
 
 'END:'||TO_CHAR(SYSDATE,'DD-MON-YY
 ----------------------------------
-End: 26-MAR-2020 11:10:37
+End: 16-MAY-2021 07:52:49
 

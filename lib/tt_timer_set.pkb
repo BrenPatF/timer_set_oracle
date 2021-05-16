@@ -8,32 +8,33 @@ for instrumentation and other purposes, with very small footprint in both code a
     GitHub: https://github.com/BrenPatF/timer_set_oracle
 
 There is an example main program and package showing how to use the Timer_Set package, and a unit 
-test program. Unit testing is optional and depends on the module trapit_oracle_tester.
+test program. Unit testing is optional and depends on the module trapit_oracle_tester
 ====================================================================================================
 |  Main/Test .sql  |  Package       |  Notes                                                       |
-|===================================================================================================
+|==================================================================================================|
 |  main_col_group  |  Col_Group     |  Example showing how to use the Timer_Set package. Col_Group |
 |                  |                |  is a simple file-reading and group-counting package         |
 |                  |                |  installed via the oracle_plsql_utils module                 |
-----------------------------------------------------------------------------------------------------
-|  r_tests         | *TT_Timer_Set* |  Unit testing the Timer_Set package. Trapit is installed as  |
-|                  |  Trapit        |  a separate module                                           |
+|------------------|----------------|--------------------------------------------------------------|
+|  r_tests         | *TT_Timer_Set* |  Unit testing the Timer_Set package. Trapit_Run is installed |
+|                  |  Trapit_Run    |  aa part of a separate module, trapit_oracle_tester          |
 ====================================================================================================
 
 This file has the TT_Timer_Set unit test package body. Note that the test package is called by the
-unit test utility package Trapit, which reads the unit test details from a table, tt_units, 
+unit test utility package Trapit_Run, which reads the unit test details from a table, tt_units, 
 populated by the install scripts.
 
 The test program follows 'The Math Function Unit Testing design pattern':
 
     GitHub: https://github.com/BrenPatF/trapit_nodejs_tester
 
-Note that the unit test program generates an output file, tt_timer_set.test_api_out.json, that is 
-processed by a separate nodejs program, npm package trapit (see README for further details).
+Note that the unit test program generates an output file,
+tt_timer_set.purely_wrap_timer_set_out.json, that is processed by a separate nodejs program, npm
+package trapit (see README for further details).
 
 The output JSON file contains arrays of expected and actual records by group and scenario, in the
 format expected by the nodejs program. This program produces listings of the results in HTML and/or
-text format, and a sample set of listings is included in the folder test_output.
+text format, and a sample set of listings is included in the folder test_data\test_output
 
 ***************************************************************************************************/
 
@@ -297,13 +298,17 @@ END do_Event_List;
 
 /***************************************************************************************************
 
-purely_Wrap_API: Design pattern has the API call wrapped in a 'pure' function, called once per 
-                 scenario, with the output 'actuals' array including everything affected by the API,
-                 whether as output parameters, or on database tables, etc. The inputs are also
-                 extended from the API parameters to include any other effective inputs
+Purely_Wrap_Timer_Set: Unit test wrapper function for Timer_Set code timing transactions
+
+    Returns the 'actual' outputs, given the inputs for a scenario, with the signature expected for
+    the Math Function Unit Testing design pattern, namely:
+
+      Input parameter: 3-level list (type L3_chr_arr) with test inputs as group/record/field
+      Return Value: 2-level list (type L2_chr_arr) with test outputs as group/record (with record as
+                   delimited fields string)
 
 ***************************************************************************************************/
-FUNCTION purely_Wrap_API(
+FUNCTION Purely_Wrap_Timer_Set(
            p_inp_3lis                    L3_chr_arr)   -- input list of lists (record, field)
            RETURN                        L2_chr_arr IS -- output list of lists (group, record)
   l_anchor_timestamp    TIMESTAMP := TIMESTAMP '2019-01-01 00:00:00.000';
@@ -353,37 +358,7 @@ BEGIN
 
   RETURN l_act_2lis;
 
-END purely_Wrap_API;
-
-PROCEDURE Test_API IS
-
-  l_act_3lis                     L3_chr_arr := L3_chr_arr();
-  l_sces_4lis                    L4_chr_arr;
-  l_scenarios                    Trapit.scenarios_rec;
-
-BEGIN
---
--- Every testing main section should be similar to this, with reading of the scenarios from JSON
--- via Trapit into array, any initial setup required, then loop over scenarios making a 'pure'
--- call to specific, local purely_Wrap_API, finally passing output array to Trapit to write the
--- output JSON file
---
-  l_scenarios := Trapit.Get_Inputs(p_package_nm   => $$PLSQL_UNIT,
-                                   p_procedure_nm => PROC_NM);
-  l_sces_4lis := l_scenarios.scenarios_4lis;
-
-  l_act_3lis.EXTEND(l_sces_4lis.COUNT);
-
-  FOR i IN 1..l_sces_4lis.COUNT LOOP
-
-    l_act_3lis(i) := purely_Wrap_API(l_sces_4lis(i));
-
-  END LOOP;
-  Trapit.Set_Outputs(p_package_nm   => $$PLSQL_UNIT,
-                     p_procedure_nm => PROC_NM,
-                     p_act_3lis     => l_act_3lis);
-
-END Test_API;
+END Purely_Wrap_Timer_Set;
 
 END TT_Timer_Set;
 /
