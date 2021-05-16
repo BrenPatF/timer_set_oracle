@@ -279,7 +279,7 @@ The art of unit testing lies in choosing a set of scenarios that will produce a 
 A useful approach to this can be to think in terms of categories of inputs, where we reduce large ranges to representative categories. In our case we might consider the following category sets, and create scenarios accordingly.
 
 #### Input Data Category Sets
-- [&uarr; Scenarios](https://github.com/BrenPatF/timer_set_oracle#scenarios)
+- [&uarr; Unit Test Scenarios](https://github.com/BrenPatF/timer_set_oracle#unit-test-scenarios)
 - [Value Size](https://github.com/BrenPatF/timer_set_oracle#Value-Size)
 - [Multiplicity (decimal places, timers, timings)](https://github.com/BrenPatF/timer_set_oracle#multiplicity--decimal-places--timers--timings-)
 - [Concurrency](https://github.com/BrenPatF/timer_set_oracle#concurrency)
@@ -289,14 +289,14 @@ A useful approach to this can be to think in terms of categories of inputs, wher
 - [API Calls](https://github.com/BrenPatF/timer_set_oracle#api-calls)
 
 ##### Value Size
-- [&uarr; Category Sets](https://github.com/BrenPatF/timer_set_oracle#category-sets)
+- [&uarr; Input Data Category Sets](https://github.com/BrenPatF/timer_set_oracle#input-data-category-sets)
 
 Check very small numbers or strings and very large ones do not cause value or display errors
 - Small
 - Large 
 
 ##### Multiplicity (decimal places, timers, timings)
-- [&uarr; Category Sets](https://github.com/BrenPatF/timer_set_oracle#category-sets)
+- [&uarr; Input Data Category Sets](https://github.com/BrenPatF/timer_set_oracle#input-data-category-sets)
 
 Check edge cases of zero decimal places and zero timers in a set, and also normal cases of multiple, and check that timers work with 1 and multiple calls
 - 0
@@ -304,14 +304,14 @@ Check edge cases of zero decimal places and zero timers in a set, and also norma
 - Multiple
 
 ##### Concurrency
-- [&uarr; Category Sets](https://github.com/BrenPatF/timer_set_oracle#category-sets)
+- [&uarr; Input Data Category Sets](https://github.com/BrenPatF/timer_set_oracle#input-data-category-sets)
 
 Check that timer sets with overlapping durations do not interfere with each other
 - Concurrent timer sets
 - No concurrent timer sets 
 
 ##### Parameter Defaults (each parameter)
-- [&uarr; Category Sets](https://github.com/BrenPatF/timer_set_oracle#category-sets)
+- [&uarr; Input Data Category Sets](https://github.com/BrenPatF/timer_set_oracle#input-data-category-sets)
 
 Check that parameters default as expected, and also are overridden by values passed
 - Defaulted
@@ -319,21 +319,21 @@ Check that parameters default as expected, and also are overridden by values pas
 
 
 ##### Timings Mocked
-- [&uarr; Category Sets](https://github.com/BrenPatF/timer_set_oracle#category-sets)
+- [&uarr; Input Data Category Sets](https://github.com/BrenPatF/timer_set_oracle#input-data-category-sets)
 
 Check with mocked timings that the numeric aggregations work exactly, and also check with unmocked timings that the system timing APIs are called correctly
 - Mocked
 - Non-mocked
 
 ##### Exceptions
-- [&uarr; Category Sets](https://github.com/BrenPatF/timer_set_oracle#category-sets)
+- [&uarr; Input Data Category Sets](https://github.com/BrenPatF/timer_set_oracle#input-data-category-sets)
 
 Check that validations return exceptions correctly
 - None
 - Decimal places invalid
 
 ##### API Calls
-- [&uarr; Category Sets](https://github.com/BrenPatF/timer_set_oracle#category-sets)
+- [&uarr; Input Data Category Sets](https://github.com/BrenPatF/timer_set_oracle#input-data-category-sets)
 
 Check that all entry points work. Note that these are represented by different values for the event type wrapper function input parameter
 - Construct
@@ -351,7 +351,7 @@ Check that all entry points work. Note that these are represented by different v
 - [Results for Scenario 1](https://github.com/BrenPatF/timer_set_oracle#results-for-scenario-1)
 
 ##### Results Summary
-- [&uarr; Scenarios Results](https://github.com/BrenPatF/timer_set_oracle#scenario-results)
+- [&uarr; Scenario Results](https://github.com/BrenPatF/timer_set_oracle#scenario-results)
 
 The summary report in text format shows the scenarios tested:
 
