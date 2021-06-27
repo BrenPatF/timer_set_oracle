@@ -355,7 +355,7 @@ Check that all entry points work. Note that these are represented by different v
 
 The summary report in text format shows the scenarios tested:
 
-      #    Scenario                                                                                                                                          Fails (of 8)  Status 
+      #    Scenario                                                                                                                                          Fails (of 9)  Status 
       ---  ------------------------------------------------------------------------------------------------------------------------------------------------  ------------  -------
       1    2 timer sets, ts-1: timer-1 called twice, timer-2 called in between; ts-2: timer-1 called twice, initTime called in between; all outputs; mocked  0             SUCCESS
       2    As scenario 1 but not mocked, and with SELFs                                                                                                      0             SUCCESS
@@ -484,7 +484,10 @@ SCENARIO 1: 2 timer sets, ts-1: timer-1 called twice, timer-2 called in between;
       GROUP 8: Exception: Empty as expected: SUCCESS
       ==============================================
 
-} 0 failed of 8: SUCCESS
+      GROUP 9: Unhandled Exception: Empty as expected: SUCCESS
+      ========================================================
+
+} 0 failed of 9: SUCCESS
 ========================
 </pre>
 
