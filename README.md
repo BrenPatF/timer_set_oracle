@@ -261,7 +261,6 @@ To run the processor, open a powershell window in the npm trapit package folder 
 ```
 $ node externals\format-externals oracle_plsql
 ```
-```
 
 This creates, or updates, a subfolder, oracle-pl_sql-timer-set, with the formatted results output files. The three testing steps can easily be automated in Powershell (or Unix bash).
 
