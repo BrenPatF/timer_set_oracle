@@ -711,7 +711,7 @@ Fails:         0
 Folder:        timer-set-oracle-pl_sql
 ```
 
-You can review the formatted unit test results here, [Unit Test Report: Timer Set Oracle PL/SQL](http://htmlpreview.github.io/?https://github.com/BrenPatF/timer_set_oracle/blob/master/unit_test/oracle-pl_sql-timer-set/oracle-pl_sql-timer-set.html), and the files are available in the `unit_test\timer-set-oracle-pl_sql` subfolder [timer-set-oracle-pl_sql.html is the root page for the HTML version and timer-set-oracle-pl_sql.txt has the results in text format].
+You can review the formatted unit test results here, [Unit Test Report: Timer Set Oracle PL/SQL](http://htmlpreview.github.io/?https://github.com/BrenPatF/timer_set_oracle/blob/master/unit_test/timer-set-oracle-pl_sql/timer-set-oracle-pl_sql.html), and the files are available in the `unit_test\timer-set-oracle-pl_sql` subfolder [timer-set-oracle-pl_sql.html is the root page for the HTML version and timer-set-oracle-pl_sql.txt has the results in text format].
 
 Next we show the scenario-level summary of results, followed by the results page for scenario 8.
 
