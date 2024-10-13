@@ -47,7 +47,7 @@ c_utils_syns.sql:
                         Utils package. Also used in other utility-type modules
 
 ***************************************************************************************************/
-@..\initspool install_col_group
+@..\..\initspool install_col_group
 
 PROMPT Create Utils synonyms
 PROMPT =====================
@@ -79,4 +79,5 @@ PROMPT Create package Col_Group
 @col_group.pks
 @col_group.pkb
 
-@..\endspool
+@..\..\endspool
+exit

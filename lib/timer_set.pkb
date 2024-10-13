@@ -136,17 +136,15 @@ BEGIN
   IF p_format_prms.calls_width < MIN_CALLS_WIDTH THEN
     Utils.Raise_Error('Error, calls_width must be >= ' || MIN_CALLS_WIDTH || ', actual: ' ||
        p_format_prms.calls_width);
-  ELSIF p_format_prms.time_width < 0 OR p_format_prms.time_dp < 0 
-                                     OR p_format_prms.time_ratio_dp < 0 THEN
-    Utils.Raise_Error('Error, time_width, time_dp, time_ratio_dp must be > 0, actual: ' || 
-        p_format_prms.time_width || ', ' || p_format_prms.time_dp || ', ' || 
-        p_format_prms.time_ratio_dp);
-  ELSIF p_format_prms.time_width + p_format_prms.time_dp < MIN_TOT_TIME_WIDTH THEN
-    Utils.Raise_Error('Error, time_width + time_dp must be >= ' || MIN_TOT_TIME_WIDTH ||
-        ', actual: ' ||p_format_prms.time_width || ' + ' || p_format_prms.time_dp);
-  ELSIF p_format_prms.time_width + p_format_prms.time_ratio_dp < MIN_TOT_RATIO_WIDTH THEN
-    Utils.Raise_Error('Error, time_width + time_dp must be >= ' || MIN_TOT_RATIO_WIDTH ||
-        ', actual: ' || p_format_prms.time_width || ' + ' || p_format_prms.time_ratio_dp);
+  ELSIF p_format_prms.time_width < MIN_TOT_TIME_WIDTH THEN
+    Utils.Raise_Error('Error, time_width must be >= ' || 
+        MIN_TOT_TIME_WIDTH || ', actual: ' || p_format_prms.time_width);
+  ELSIF p_format_prms.time_width - p_format_prms.time_dp < 2 THEN
+    Utils.Raise_Error('Error, time_width - time_dp must be >= 2' ||
+        ', actual: ' || To_Char(p_format_prms.time_width - p_format_prms.time_dp));
+  ELSIF p_format_prms.time_width - p_format_prms.time_ratio_dp < 2 THEN
+    Utils.Raise_Error('Error, time_width - time_ratio_dp must be >= 2' ||
+        ', actual: ' || To_Char(p_format_prms.time_width - p_format_prms.time_ratio_dp));
   END IF;
     
 END val_Widths;

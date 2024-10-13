@@ -1,0 +1,1 @@
+pwsh .\Format-JSON-Timer_Set.ps1  > .\Format-JSON-Timer_Set.out 2> .\Format-JSON-Timer_Set.err

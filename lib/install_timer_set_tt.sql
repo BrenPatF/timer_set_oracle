@@ -62,3 +62,4 @@ BEGIN
 END;
 /
 @..\endspool
+exit

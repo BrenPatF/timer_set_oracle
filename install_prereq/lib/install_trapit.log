@@ -1,19 +1,31 @@
 
-Database             Time                 Version
--------------------- -------------------- ------------------------------
-Start: ORCL          16-MAY-2021 07:50:46 Version 19.3.0.0.0
+Database                       Time                 Version
+------------------------------ -------------------- ------------------------------
+Start: FREE / ORCLPDB          13-OCT-2024 16:13:24 Version 23.4.0.24.05
 
 Drop table tt_units
+DROP TABLE tt_units
+           *
+ERROR at line 1:
+ORA-00942: table or view "LIB"."TT_UNITS" does not exist
+Help: https://docs.oracle.com/error-help/db/ora-00942/
 
-Table dropped.
 
 Common type creation
 ====================
+DROP TYPE L4_chr_arr
+*
+ERROR at line 1:
+ORA-04043: Object L4_CHR_ARR does not exist.
+Help: https://docs.oracle.com/error-help/db/ora-04043/
 
-Type dropped.
 
+DROP TYPE L3_chr_arr
+*
+ERROR at line 1:
+ORA-04043: Object L3_CHR_ARR does not exist.
+Help: https://docs.oracle.com/error-help/db/ora-04043/
 
-Type dropped.
 
 Create type L2_chr_arr
 
@@ -91,5 +103,5 @@ Grant succeeded.
 
 'END:'||TO_CHAR(SYSDATE,'DD-MON-YY
 ----------------------------------
-End: 16-MAY-2021 07:50:47
+End: 13-OCT-2024 16:13:24
 

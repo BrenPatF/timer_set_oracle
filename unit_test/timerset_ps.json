@@ -1,0 +1,1000 @@
+{
+  "meta": {
+    "title": "TimerSet - Powershell",
+    "delimiter": "|",
+    "inp": {
+      "Event Sequence": [
+        "Set Name",
+        "Timer Name",
+        "Event",
+        "Elapsed Time",
+        "CPU Time"
+      ],
+      "Scalars": [
+        "Mock Flag",
+        "Time Width",
+        "Decimal Places (Totals)",
+        "Decimal Places (per call)",
+        "Calls Width"
+      ]
+    },
+    "out": {
+      "Set 1": [
+        "Timer Name",
+        "Elapsed Ticks",
+        "CPU Ticks",
+        "#Calls"
+      ],
+      "Set 1 (formatted)": [
+        "Line"
+      ],
+      "Set 2": [
+        "Timer Name",
+        "Elapsed Ticks",
+        "CPU Ticks",
+        "#Calls"
+      ],
+      "Set 2 (formatted)": [
+        "Line"
+      ],
+      "Self (unmocked)": [
+        "Elapsed Ticks",
+        "CPU Ticks"
+      ],
+      "Self (unmocked, formatted)": [
+        "Self Timing Ratios"
+      ],
+      "Results": [
+        "Lines"
+      ],
+      "Exception": [
+        "1 Message, 2 Stack"
+      ]
+    }
+  },
+  "scenarios": {
+    "One timing for a timer": {
+      "active_yn": "Y",
+      "category_set": "Timer Timing Multiplicity",
+      "inp": {
+        "Event Sequence": [
+            "Set 1||CON|3.000|.800",
+            "Set 1|Timer 1|INC|10003.000|2000.800",
+            "Set 1||GETF|20003.000|4000.800"
+        ],
+        "Scalars": [
+          "Y||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+        ],
+        "Set 1 (formatted)": [
+            "Timer     Elapsed       CPU   Calls     Ela/Call     CPU/Call",
+            "-------  --------  --------  ------  -----------  -----------",
+            "Timer 1  10000.00   2000.00       1  10000.00000   2000.00000",
+            "(Other)  10000.00   2000.00       1  10000.00000   2000.00000",
+            "-------  --------  --------  ------  -----------  -----------",
+            "Total    20000.00   4000.00       2  10000.00000   2000.00000",
+            "-------  --------  --------  ------  -----------  -----------"
+        ],
+        "Set 2": [
+        ],
+        "Set 2 (formatted)": [
+        ],
+        "Self (unmocked)": [
+        ],
+        "Self (unmocked, formatted)": [
+        ],
+        "Results": [
+        ],
+        "Exception": [
+        ]
+      }
+    },
+    "Multiple timings for a timer": {
+      "active_yn": "Y",
+      "category_set": "Timer Timing Multiplicity",
+      "inp": {
+        "Event Sequence": [
+            "Set 1||CON|3.000|.800",
+            "Set 1|Timer 1|INC|10003.000|2000.800",
+            "Set 1|Timer 1|INC|20003.000|3000.800",
+            "Set 1||GETF|30003.000|5000.800"
+        ],
+        "Scalars": [
+          "Y||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+        ],
+        "Set 1 (formatted)": [
+            "Timer     Elapsed       CPU   Calls     Ela/Call     CPU/Call",
+            "-------  --------  --------  ------  -----------  -----------",
+            "Timer 1  20000.00   3000.00       2  10000.00000   1500.00000",
+            "(Other)  10000.00   2000.00       1  10000.00000   2000.00000",
+            "-------  --------  --------  ------  -----------  -----------",
+            "Total    30000.00   5000.00       3  10000.00000   1666.66667",
+            "-------  --------  --------  ------  -----------  -----------"
+        ],
+        "Set 2": [
+        ],
+        "Set 2 (formatted)": [
+        ],
+        "Self (unmocked)": [
+        ],
+        "Self (unmocked, formatted)": [
+        ],
+        "Results": [
+        ],
+        "Exception": [
+        ]
+      }
+    },
+    "No timer in timer set": {
+      "active_yn": "Y",
+      "category_set": "Timer Multiplicity",
+      "inp": {
+        "Event Sequence": [
+            "Set 1||CON|3.000|.800",
+            "Set 1||GETF|30003.000|5000.800",
+            "Set 1||RES|30003.000|5000.800"
+        ],
+        "Scalars": [
+          "Y||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+        ],
+        "Set 1 (formatted)": [
+            "Timer     Elapsed       CPU   Calls     Ela/Call     CPU/Call",
+            "-------  --------  --------  ------  -----------  -----------",
+            "(Other)  30000.00   5000.00       1  30000.00000   5000.00000",
+            "-------  --------  --------  ------  -----------  -----------",
+            "Total    30000.00   5000.00       1  30000.00000   5000.00000",
+            "-------  --------  --------  ------  -----------  -----------"
+        ],
+        "Set 2": [
+        ],
+        "Set 2 (formatted)": [
+        ],
+        "Self (unmocked)": [
+        ],
+        "Self (unmocked, formatted)": [
+        ],
+        "Results": [
+            "LIKE /Timer[^]*Other[^]*\\[Timer timed[^]*\\]/"
+        ],
+        "Exception": [
+        ]
+      }
+    },
+    "One timer in timer set": {
+      "active_yn": "Y",
+      "category_set": "Timer Multiplicity",
+      "inp": {
+        "Event Sequence": [
+            "Set 1||CON|3.000|.800",
+            "Set 1|Timer 1|INC|10003.000|2000.800",
+            "Set 1|Timer 1|INC|20003.000|3000.800",
+            "Set 1||GETF|30003.000|5000.800"
+        ],
+        "Scalars": [
+          "Y||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+        ],
+        "Set 1 (formatted)": [
+            "Timer     Elapsed       CPU   Calls     Ela/Call     CPU/Call",
+            "-------  --------  --------  ------  -----------  -----------",
+            "Timer 1  20000.00   3000.00       2  10000.00000   1500.00000",
+            "(Other)  10000.00   2000.00       1  10000.00000   2000.00000",
+            "-------  --------  --------  ------  -----------  -----------",
+            "Total    30000.00   5000.00       3  10000.00000   1666.66667",
+            "-------  --------  --------  ------  -----------  -----------"
+        ],
+        "Set 2": [
+        ],
+        "Set 2 (formatted)": [
+        ],
+        "Self (unmocked)": [
+        ],
+        "Self (unmocked, formatted)": [
+        ],
+        "Results": [
+        ],
+        "Exception": [
+        ]
+      }
+    },
+    "Multiple timers in timer set": {
+      "active_yn": "Y",
+      "category_set": "Timer Multiplicity",
+      "inp": {
+        "Event Sequence": [
+            "Set 1||CON|3.000|.800",
+            "Set 1|Timer 1|INC|10003.000|2000.800",
+            "Set 1|Timer 2|INC|20003.000|3000.800",
+            "Set 1||GETF|30003.000|5000.800"
+        ],
+        "Scalars": [
+          "Y||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+        ],
+        "Set 1 (formatted)": [
+            "Timer     Elapsed       CPU   Calls     Ela/Call     CPU/Call",
+            "-------  --------  --------  ------  -----------  -----------",
+            "Timer 1  10000.00   2000.00       1  10000.00000   2000.00000",
+            "Timer 2  10000.00   1000.00       1  10000.00000   1000.00000",
+            "(Other)  10000.00   2000.00       1  10000.00000   2000.00000",
+            "-------  --------  --------  ------  -----------  -----------",
+            "Total    30000.00   5000.00       3  10000.00000   1666.66667",
+            "-------  --------  --------  ------  -----------  -----------"
+        ],
+        "Set 2": [
+        ],
+        "Set 2 (formatted)": [
+        ],
+        "Self (unmocked)": [
+        ],
+        "Self (unmocked, formatted)": [
+        ],
+        "Results": [
+        ],
+        "Exception": [
+        ]
+      }
+    },
+    "One timer set": {
+      "active_yn": "Y",
+      "category_set": "Timer Set Multiplicity",
+      "inp": {
+        "Event Sequence": [
+            "Set 1||CON|3.000|.800",
+            "Set 1|Timer 1|INC|10003.000|2000.800",
+            "Set 1|Timer 2|INC|20003.000|3000.800",
+            "Set 1||GETF|30003.000|5000.800"
+        ],
+        "Scalars": [
+          "Y||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+        ],
+        "Set 1 (formatted)": [
+            "Timer     Elapsed       CPU   Calls     Ela/Call     CPU/Call",
+            "-------  --------  --------  ------  -----------  -----------",
+            "Timer 1  10000.00   2000.00       1  10000.00000   2000.00000",
+            "Timer 2  10000.00   1000.00       1  10000.00000   1000.00000",
+            "(Other)  10000.00   2000.00       1  10000.00000   2000.00000",
+            "-------  --------  --------  ------  -----------  -----------",
+            "Total    30000.00   5000.00       3  10000.00000   1666.66667",
+            "-------  --------  --------  ------  -----------  -----------"
+        ],
+        "Set 2": [
+        ],
+        "Set 2 (formatted)": [
+        ],
+        "Self (unmocked)": [
+        ],
+        "Self (unmocked, formatted)": [
+        ],
+        "Results": [
+        ],
+        "Exception": [
+        ]
+      }
+    },
+    "Multiple non-overlapping timer sets": {
+      "active_yn": "Y",
+      "category_set": "Timer Set Multiplicity",
+      "inp": {
+        "Event Sequence": [
+            "Set 1||CON|3.000|.800",
+            "Set 1|Timer 1|INC|10003.000|2000.800",
+            "Set 1|Timer 2|INC|20003.000|3000.800",
+            "Set 2||CON|20003.000|3000.800",
+            "Set 2|Timer 1|INC|30003.000|4000.800",
+            "Set 1||GETF|40003.000|5000.800",
+            "Set 2||GETF|40003.000|5000.800"
+        ],
+        "Scalars": [
+          "Y||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+        ],
+        "Set 1 (formatted)": [
+            "Timer     Elapsed       CPU   Calls     Ela/Call     CPU/Call",
+            "-------  --------  --------  ------  -----------  -----------",
+            "Timer 1  10000.00   2000.00       1  10000.00000   2000.00000",
+            "Timer 2  10000.00   1000.00       1  10000.00000   1000.00000",
+            "(Other)  20000.00   2000.00       1  20000.00000   2000.00000",
+            "-------  --------  --------  ------  -----------  -----------",
+            "Total    40000.00   5000.00       3  13333.33333   1666.66667",
+            "-------  --------  --------  ------  -----------  -----------"
+        ],
+        "Set 2": [
+        ],
+        "Set 2 (formatted)": [
+            "Timer     Elapsed       CPU   Calls     Ela/Call     CPU/Call",
+            "-------  --------  --------  ------  -----------  -----------",
+            "Timer 1  10000.00   1000.00       1  10000.00000   1000.00000",
+            "(Other)  10000.00   1000.00       1  10000.00000   1000.00000",
+            "-------  --------  --------  ------  -----------  -----------",
+            "Total    20000.00   2000.00       2  10000.00000   1000.00000",
+            "-------  --------  --------  ------  -----------  -----------"
+        ],
+        "Self (unmocked)": [
+        ],
+        "Self (unmocked, formatted)": [
+        ],
+        "Results": [
+        ],
+        "Exception": [
+        ]
+      }
+    },
+    "Multiple timer sets with overlapping": {
+      "active_yn": "Y",
+      "category_set": "Timer Set Multiplicity",
+      "inp": {
+        "Event Sequence": [
+            "Set 1||CON|3.000|.800",
+            "Set 1|Timer 1|INC|10003.000|2000.800",
+            "Set 2||CON|20003.000|3000.800",
+            "Set 1|Timer 2|INC|30003.000|4000.800",
+            "Set 2|Timer 1|INC|30003.000|4000.800",
+            "Set 1||GETF|40003.000|5000.800",
+            "Set 2||GETF|40003.000|5000.800"
+        ],
+        "Scalars": [
+          "Y||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+        ],
+        "Set 1 (formatted)": [
+            "Timer     Elapsed       CPU   Calls     Ela/Call     CPU/Call",
+            "-------  --------  --------  ------  -----------  -----------",
+            "Timer 1  10000.00   2000.00       1  10000.00000   2000.00000",
+            "Timer 2  20000.00   2000.00       1  20000.00000   2000.00000",
+            "(Other)  10000.00   1000.00       1  10000.00000   1000.00000",
+            "-------  --------  --------  ------  -----------  -----------",
+            "Total    40000.00   5000.00       3  13333.33333   1666.66667",
+            "-------  --------  --------  ------  -----------  -----------"
+        ],
+        "Set 2": [
+        ],
+        "Set 2 (formatted)": [
+            "Timer     Elapsed       CPU   Calls     Ela/Call     CPU/Call",
+            "-------  --------  --------  ------  -----------  -----------",
+            "Timer 1  10000.00   1000.00       1  10000.00000   1000.00000",
+            "(Other)  10000.00   1000.00       1  10000.00000   1000.00000",
+            "-------  --------  --------  ------  -----------  -----------",
+            "Total    20000.00   2000.00       2  10000.00000   1000.00000",
+            "-------  --------  --------  ------  -----------  -----------"
+        ],
+        "Self (unmocked)": [
+        ],
+        "Self (unmocked, formatted)": [
+        ],
+        "Results": [
+        ],
+        "Exception": [
+        ]
+      }
+    },
+    "No decimal places": {
+      "active_yn": "Y",
+      "category_set": "Decimals Multiplicity",
+      "inp": {
+        "Event Sequence": [
+            "Set 1||CON|3.000|.100",
+            "Set 1|Timer 1|INC|10003.123456|2000.823456",
+            "Set 1|Timer 2|INC|20003.000|3000.800",
+            "Set 1||GETF|30003.000|5000.800"
+        ],
+        "Scalars": [
+          "Y|8|0|0|8"
+        ]
+      },
+      "out": {
+        "Set 1": [
+        ],
+        "Set 1 (formatted)": [
+            "Timer     Elapsed       CPU     Calls  Ela/Call  CPU/Call",
+            "-------  --------  --------  --------  --------  --------",
+            "Timer 1     10000      2001         1     10000      2001",
+            "Timer 2     10000      1000         1     10000      1000",
+            "(Other)     10000      2000         1     10000      2000",
+            "-------  --------  --------  --------  --------  --------",
+            "Total       30000      5001         3     10000      1667",
+            "-------  --------  --------  --------  --------  --------"
+        ],
+        "Set 2": [
+        ],
+        "Set 2 (formatted)": [
+        ],
+        "Self (unmocked)": [
+        ],
+        "Self (unmocked, formatted)": [
+        ],
+        "Results": [
+        ],
+        "Exception": [
+        ]
+      }
+    },
+    "One decimal place": {
+      "active_yn": "Y",
+      "category_set": "Decimals Multiplicity",
+      "inp": {
+        "Event Sequence": [
+            "Set 1||CON|3.000|.100",
+            "Set 1|Timer 1|INC|10003.123456|2000.823456",
+            "Set 1|Timer 2|INC|20003.000|3000.800",
+            "Set 1||GETF|30003.000|5000.800"
+        ],
+        "Scalars": [
+          "Y|8|1|1|8"
+        ]
+      },
+      "out": {
+        "Set 1": [
+        ],
+        "Set 1 (formatted)": [
+            "Timer     Elapsed       CPU     Calls  Ela/Call  CPU/Call",
+            "-------  --------  --------  --------  --------  --------",
+            "Timer 1   10000.1    2000.7         1   10000.1    2000.7",
+            "Timer 2    9999.9    1000.0         1    9999.9    1000.0",
+            "(Other)   10000.0    2000.0         1   10000.0    2000.0",
+            "-------  --------  --------  --------  --------  --------",
+            "Total     30000.0    5000.7         3   10000.0    1666.9",
+            "-------  --------  --------  --------  --------  --------"
+        ],
+        "Set 2": [
+        ],
+        "Set 2 (formatted)": [
+        ],
+        "Self (unmocked)": [
+        ],
+        "Self (unmocked, formatted)": [
+        ],
+        "Results": [
+        ],
+        "Exception": [
+        ]
+      }
+    },
+    "Multiple decimal places": {
+      "active_yn": "Y",
+      "category_set": "Decimals Multiplicity",
+      "inp": {
+        "Event Sequence": [
+            "Set 1||CON|3.000|.100",
+            "Set 1|Timer 1|INC|10003.123456|2000.823456",
+            "Set 1|Timer 2|INC|20003.000|3000.800",
+            "Set 1||GETF|30003.000|5000.800"
+        ],
+        "Scalars": [
+          "Y|10|4|6|8"
+        ]
+      },
+      "out": {
+        "Set 1": [
+        ],
+        "Set 1 (formatted)": [
+            "Timer       Elapsed         CPU     Calls      Ela/Call      CPU/Call",
+            "-------  ----------  ----------  --------  ------------  ------------",
+            "Timer 1  10000.1235   2000.7235         1  10000.123456   2000.723456",
+            "Timer 2   9999.8765    999.9765         1   9999.876544    999.976544",
+            "(Other)  10000.0000   2000.0000         1  10000.000000   2000.000000",
+            "-------  ----------  ----------  --------  ------------  ------------",
+            "Total    30000.0000   5000.7000         3  10000.000000   1666.900000",
+            "-------  ----------  ----------  --------  ------------  ------------"
+        ],
+        "Set 2": [
+        ],
+        "Set 2 (formatted)": [
+        ],
+        "Self (unmocked)": [
+        ],
+        "Self (unmocked, formatted)": [
+        ],
+        "Results": [
+        ],
+        "Exception": [
+        ]
+      }
+    },
+    "Small values": {
+      "active_yn": "Y",
+      "category_set": "Value Size",
+      "inp": {
+        "Event Sequence": [
+            "Set 1||CON|3.000|.800",
+            "Set 1|Timer 1|INC|3.006|.802",
+            "Set 1||GETF|3.012|.808"
+        ],
+        "Scalars": [
+          "Y||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+        ],
+        "Set 1 (formatted)": [
+            "Timer     Elapsed       CPU   Calls     Ela/Call     CPU/Call",
+            "-------  --------  --------  ------  -----------  -----------",
+            "Timer 1      0.01      0.00       1      0.00600      0.00200",
+            "(Other)      0.01      0.01       1      0.00600      0.00600",
+            "-------  --------  --------  ------  -----------  -----------",
+            "Total        0.01      0.01       2      0.00600      0.00400",
+            "-------  --------  --------  ------  -----------  -----------"
+        ],
+        "Set 2": [
+        ],
+        "Set 2 (formatted)": [
+        ],
+        "Self (unmocked)": [
+        ],
+        "Self (unmocked, formatted)": [
+        ],
+        "Results": [
+        ],
+        "Exception": [
+        ]
+      }
+    },
+    "Medium values": {
+      "active_yn": "y",
+      "category_set": "Value Size",
+      "inp": {
+        "Event Sequence": [
+            "Set 1||CON|3.000|.800",
+            "Set 1|Timer 1|INC|13.000|2.800",
+            "Set 1||GETF|23.000|4.800"
+        ],
+        "Scalars": [
+          "Y||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+        ],
+        "Set 1 (formatted)": [
+            "Timer     Elapsed       CPU   Calls     Ela/Call     CPU/Call",
+            "-------  --------  --------  ------  -----------  -----------",
+            "Timer 1     10.00      2.00       1     10.00000      2.00000",
+            "(Other)     10.00      2.00       1     10.00000      2.00000",
+            "-------  --------  --------  ------  -----------  -----------",
+            "Total       20.00      4.00       2     10.00000      2.00000",
+            "-------  --------  --------  ------  -----------  -----------"
+        ],
+        "Set 2": [
+        ],
+        "Set 2 (formatted)": [
+        ],
+        "Self (unmocked)": [
+        ],
+        "Self (unmocked, formatted)": [
+        ],
+        "Results": [
+        ],
+        "Exception": [
+        ]
+      }
+    },
+    "Large values": {
+      "active_yn": "Y",
+      "category_set": "Value Size",
+      "inp": {
+        "Event Sequence": [
+            "Set 1||CON|3.000|.800",
+            "Set 1|Timer 1|INC|10003.000|2000.800",
+            "Set 1||GETF|20003.000|4000.800"
+        ],
+        "Scalars": [
+          "Y||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+        ],
+        "Set 1 (formatted)": [
+            "Timer     Elapsed       CPU   Calls     Ela/Call     CPU/Call",
+            "-------  --------  --------  ------  -----------  -----------",
+            "Timer 1  10000.00   2000.00       1  10000.00000   2000.00000",
+            "(Other)  10000.00   2000.00       1  10000.00000   2000.00000",
+            "-------  --------  --------  ------  -----------  -----------",
+            "Total    20000.00   4000.00       2  10000.00000   2000.00000",
+            "-------  --------  --------  ------  -----------  -----------"
+        ],
+        "Set 2": [
+        ],
+        "Set 2 (formatted)": [
+        ],
+        "Self (unmocked)": [
+        ],
+        "Self (unmocked, formatted)": [
+        ],
+        "Results": [
+        ],
+        "Exception": [
+        ]
+      }
+    },
+    "None defaulted": {
+      "active_yn": "Y",
+      "category_set": "Parameter Defaults",
+      "inp": {
+        "Event Sequence": [
+            "Set 1||CON|3.000|.800",
+            "Set 1|Timer 1|INC|13.000|2.800",
+            "Set 1||GETF|23.000|4.800"
+        ],
+        "Scalars": [
+          "Y|8|4|6|8"
+        ]
+      },
+      "out": {
+        "Set 1": [
+        ],
+        "Set 1 (formatted)": [
+            "Timer     Elapsed       CPU     Calls    Ela/Call    CPU/Call",
+            "-------  --------  --------  --------  ----------  ----------",
+            "Timer 1   10.0000    2.0000         1   10.000000    2.000000",
+            "(Other)   10.0000    2.0000         1   10.000000    2.000000",
+            "-------  --------  --------  --------  ----------  ----------",
+            "Total     20.0000    4.0000         2   10.000000    2.000000",
+            "-------  --------  --------  --------  ----------  ----------"
+        ],
+        "Set 2": [
+        ],
+        "Set 2 (formatted)": [
+        ],
+        "Self (unmocked)": [
+        ],
+        "Self (unmocked, formatted)": [
+        ],
+        "Results": [
+        ],
+        "Exception": [
+        ]
+      }
+    },
+    "All defaulted": {
+      "active_yn": "Y",
+      "category_set": "Parameter Defaults",
+      "inp": {
+        "Event Sequence": [
+            "Set 1||CON|3.000|.800",
+            "Set 1|Timer 1|INC|13.000|2.800",
+            "Set 1||GETF|23.000|4.800"
+        ],
+        "Scalars": [
+          "Y||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+        ],
+        "Set 1 (formatted)": [
+            "Timer     Elapsed       CPU   Calls     Ela/Call     CPU/Call",
+            "-------  --------  --------  ------  -----------  -----------",
+            "Timer 1     10.00      2.00       1     10.00000      2.00000",
+            "(Other)     10.00      2.00       1     10.00000      2.00000",
+            "-------  --------  --------  ------  -----------  -----------",
+            "Total       20.00      4.00       2     10.00000      2.00000",
+            "-------  --------  --------  ------  -----------  -----------"
+        ],
+        "Set 2": [
+        ],
+        "Set 2 (formatted)": [
+        ],
+        "Self (unmocked)": [
+        ],
+        "Self (unmocked, formatted)": [
+        ],
+        "Results": [
+        ],
+        "Exception": [
+        ]
+      }
+    },
+    "All entry points called": {
+      "active_yn": "Y",
+      "category_set": "Entry Points Called",
+      "inp": {
+        "Event Sequence": [
+            "Set 1||CON|3.000|.800",
+            "Set 1|Timer 1|INC|33.123|9.256",
+            "Set 1||INI|153.615|43.080",
+            "Set 1|Timer 1|INC|183.738|51.536",
+            "Set 1||GET|213.861|59.992",
+            "Set 1||GETF|213.861|59.992",
+            "Set 1||RES|213.861|59.992",
+            "Set 1||SELF|213.861|59.992",
+            "Set 1||SELFF|213.861|59.992"
+        ],
+        "Scalars": [
+          "Y||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+            "Timer 1|602460000|169120000|2",
+            "(Other)|1506150000|422800000|1",
+            "Total|2108610000|591920000|3"
+        ],
+        "Set 1 (formatted)": [
+            "Timer     Elapsed       CPU   Calls     Ela/Call     CPU/Call",
+            "-------  --------  --------  ------  -----------  -----------",
+            "Timer 1     60.25     16.91       2     30.12300      8.45600",
+            "(Other)    150.62     42.28       1    150.61500     42.28000",
+            "-------  --------  --------  ------  -----------  -----------",
+            "Total      210.86     59.19       3     70.28700     19.73067",
+            "-------  --------  --------  ------  -----------  -----------"
+        ],
+        "Set 2": [
+        ],
+        "Set 2 (formatted)": [
+        ],
+        "Self (unmocked)": [
+            "IN [50000, 200000]|IN [20000, 200000]"
+        ],
+        "Self (unmocked, formatted)": [
+            "LIKE /\\[Timer timed \\(per call in ms\\): Elapsed: .*\\]/"
+        ],
+        "Results": [
+            "LIKE /Timer[^]*Timer 1[^]*\\[Timer timed[^]*\\]/"
+        ],
+        "Exception": [
+        ]
+      }
+    },
+    "Timings real": {
+      "active_yn": "Y",
+      "category_set": "Timings Mocked",
+      "inp": {
+        "Event Sequence": [
+            "Set 1||CON|0.3000|.800",
+            "Set 1|Timer 1|INC|0.123|9.256",
+            "Set 1||INI|0.615|0.080",
+            "Set 1|Timer 1|INC|0.738|51.536",
+            "Set 1||GET|0.861|0.992",
+            "Set 1||GETF|0.861|0.992",
+            "Set 1||RES|0.861|0.992",
+            "Set 1||SELF|0.861|0.992",
+            "Set 1||SELFF|0.861|0.992"
+        ],
+        "Scalars": [
+          "N||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+            "Timer 1|IN [1500000,25000000]|IN [75000,12500000]|2",
+            "(Other)|IN [3000000,50000000]|IN [150000,250000000|1",
+            "Total|IN [6000000,80000000]|IN [300000,40000000]|3"
+        ],
+        "Set 1 (formatted)": [
+            "Timer     Elapsed       CPU   Calls     Ela/Call     CPU/Call",
+            "-------  --------  --------  ------  -----------  -----------",
+            "LIKE /Timer 1.*/",
+            "LIKE /\\(Other\\).*/",
+            "-------  --------  --------  ------  -----------  -----------",
+            "LIKE /Total.*/",
+            "-------  --------  --------  ------  -----------  -----------"
+        ],
+        "Set 2": [
+        ],
+        "Set 2 (formatted)": [
+        ],
+        "Self (unmocked)": [
+            "IN [30000, 900000]|IN [1500, 450000]"
+        ],
+        "Self (unmocked, formatted)": [
+            "LIKE /\\[Timer timed \\(per call in ms\\): Elapsed: .*\\]/"
+        ],
+        "Results": [
+            "LIKE /Timer[^]*Timer 1[^]*\\[Timer timed[^]*\\]/"
+        ],
+        "Exception": [
+        ]
+      }
+    },
+    "All parameters just valid": {
+      "active_yn": "Y",
+      "category_set": "Parameter Validation",
+      "inp": {
+        "Event Sequence": [
+            "Set 1||CON|3.000|.800",
+            "Set 1|Timer 1|INC|3.001|.801",
+            "Set 1|Timer 1|INC|3.002|.802",
+            "Set 1||GETF|3.003|.803"
+        ],
+        "Scalars": [
+          "Y|8|6|6|5"
+        ]
+      },
+      "out": {
+        "Set 1": [
+        ],
+        "Set 1 (formatted)": [
+            "Timer     Elapsed       CPU  Calls  Ela/Call  CPU/Call",
+            "-------  --------  --------  -----  --------  --------",
+            "Timer 1  0.002000  0.002000      2  0.001000  0.001000",
+            "(Other)  0.001000  0.001000      1  0.001000  0.001000",
+            "-------  --------  --------  -----  --------  --------",
+            "Total    0.003000  0.003000      3  0.001000  0.001000",
+            "-------  --------  --------  -----  --------  --------"
+        ],
+        "Set 2": [
+        ],
+        "Set 2 (formatted)": [
+        ],
+        "Self (unmocked)": [
+        ],
+        "Self (unmocked, formatted)": [
+        ],
+        "Results": [
+        ],
+        "Exception": [
+        ]
+      }
+    },
+    "Parameter invalid: Time Width < 8": {
+      "active_yn": "Y",
+      "category_set": "Parameter Validation",
+      "inp": {
+        "Event Sequence": [
+            "Set 1||CON|3.000|.800",
+            "Set 1|Timer 1|INC|3.001|.801",
+            "Set 1|Timer 1|INC|3.002|.802",
+            "Set 1||GETF|3.003|.803"
+        ],
+        "Scalars": [
+          "Y|7|5|5|5"
+        ]
+      },
+      "out": {
+        "Set 1": [
+        ],
+        "Set 1 (formatted)": [
+        ],
+        "Set 2": [
+        ],
+        "Set 2 (formatted)": [
+        ],
+        "Self (unmocked)": [
+        ],
+        "Self (unmocked, formatted)": [
+        ],
+        "Results": [
+        ],
+        "Exception": [
+          "Error, timeWidth must be > 7, actual: 7",
+	  "LIKE /at valWidths, .*/"
+        ]
+      }
+    },
+    "Parameter invalid: Time DP > Time ratio DP": {
+      "active_yn": "Y",
+      "category_set": "Parameter Validation",
+      "inp": {
+        "Event Sequence": [
+            "Set 1||CON|3.000|.800",
+            "Set 1|Timer 1|INC|3.001|.801",
+            "Set 1|Timer 1|INC|3.002|.802",
+            "Set 1||GETF|3.003|.803"
+        ],
+        "Scalars": [
+          "Y|8|6|5|5"
+        ]
+      },
+      "out": {
+        "Set 1": [
+        ],
+        "Set 1 (formatted)": [
+        ],
+        "Set 2": [
+        ],
+        "Set 2 (formatted)": [
+        ],
+        "Self (unmocked)": [
+        ],
+        "Self (unmocked, formatted)": [
+        ],
+        "Results": [
+        ],
+        "Exception": [
+          "Error, timeDP  must be <= timeRatioDP, actual: 6, 5",
+	  "LIKE /at valWidths, .*/"
+        ]
+      }
+    },
+    "Parameter invalid: Time Width - Time DP > 1": {
+      "active_yn": "Y",
+      "category_set": "Parameter Validation",
+      "inp": {
+        "Event Sequence": [
+            "Set 1||CON|3.000|.800",
+            "Set 1|Timer 1|INC|3.001|.801",
+            "Set 1|Timer 1|INC|3.002|.802",
+            "Set 1||GETF|3.003|.803"
+        ],
+        "Scalars": [
+          "Y|8|7|7|5"
+        ]
+      },
+      "out": {
+        "Set 1": [
+        ],
+        "Set 1 (formatted)": [
+        ],
+        "Set 2": [
+        ],
+        "Set 2 (formatted)": [
+        ],
+        "Self (unmocked)": [
+        ],
+        "Self (unmocked, formatted)": [
+        ],
+        "Results": [
+        ],
+        "Exception": [
+          "Error, timeWidth - timeDP must be > 1 , actual: 8, 7",
+	  "LIKE /at valWidths, .*/"
+        ]
+      }
+    },
+    "Parameter invalid: Calls width < 5": {
+      "active_yn": "Y",
+      "category_set": "Parameter Validation",
+      "inp": {
+        "Event Sequence": [
+            "Set 1||CON|3.000|.800",
+            "Set 1|Timer 1|INC|3.001|.801",
+            "Set 1|Timer 1|INC|3.002|.802",
+            "Set 1||GETF|3.003|.803"
+        ],
+        "Scalars": [
+          "Y|8|5|5|4"
+        ]
+      },
+      "out": {
+        "Set 1": [
+        ],
+        "Set 1 (formatted)": [
+        ],
+        "Set 2": [
+        ],
+        "Set 2 (formatted)": [
+        ],
+        "Self (unmocked)": [
+        ],
+        "Self (unmocked, formatted)": [
+        ],
+        "Results": [
+        ],
+        "Exception": [
+          "Error, callsWidth must be > 4, actual: 4",
+	  "LIKE /at valWidths, .*/"
+        ]
+      }
+    }
+  }
+}
+

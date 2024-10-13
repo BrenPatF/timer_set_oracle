@@ -27,6 +27,10 @@ EQUALS                        CONSTANT VARCHAR2(1000) := '======================
 INPUT_DIR                     CONSTANT VARCHAR2(30) := 'INPUT_DIR';
 FLD_DELIM                     CONSTANT VARCHAR2(30) := '  ';
 CUSTOM_ERRNO                  CONSTANT PLS_INTEGER := -20000;
+c_chr_type                    CONSTANT PLS_INTEGER := 1; --DBMS_Types.TYPECODE_* do not seem to quite work
+c_num_type                    CONSTANT PLS_INTEGER := 2;
+c_dat_type                    CONSTANT PLS_INTEGER := 12;
+c_stp_type                    CONSTANT PLS_INTEGER := 180;
 
 /***************************************************************************************************
 
@@ -251,10 +255,6 @@ FUNCTION Cursor_To_List(
             p_delim                        VARCHAR2 := DELIM) -- filter string
             RETURN                         L1_chr_arr IS      -- list of delimited result records
 
-  c_chr_type    CONSTANT PLS_INTEGER := 1; --DBMS_Types.TYPECODE_* do not seem to quite work
-  c_num_type    CONSTANT PLS_INTEGER := 2;
-  c_dat_type    CONSTANT PLS_INTEGER := 12;
-  c_stp_type    CONSTANT PLS_INTEGER := 180;
   l_csr_id      PLS_INTEGER;
   l_n_cols      PLS_INTEGER;
   l_desctab     DBMS_SQL.DESC_TAB;
@@ -300,7 +300,7 @@ BEGIN
       CASE l_desctab(i).col_type
 
         WHEN c_chr_type THEN
-          DBMS_SQL.Column_Value(l_csr_id, i, l_chr_val);
+          DBMS_SQL.Column_Value(l_csr_id, i, l_chr_val); -- type of l_chr_val etc. has to match
           l_val_lis(i) := l_chr_val;
         WHEN c_num_type THEN
           DBMS_SQL.Column_Value(l_csr_id, i, l_num_val);
@@ -316,7 +316,7 @@ BEGIN
 
     END LOOP;
 
-    l_rec := Utils.Join_Values(p_value_lis => l_val_lis, p_delim => p_delim);
+    l_rec := Join_Values(p_value_lis => l_val_lis, p_delim => p_delim);
     IF p_filter IS NULL OR RegExp_Like(l_rec, p_filter) THEN
       l_res_lis.EXTEND;
       l_res_lis (l_res_lis.COUNT) := l_rec;
@@ -327,8 +327,95 @@ BEGIN
   DBMS_SQL.Close_Cursor (l_csr_id);
   RETURN l_res_lis;
 
-
 END Cursor_To_List;
+
+FUNCTION Prep_Cursor(  
+            x_csr                   IN OUT SYS_REFCURSOR)
+            RETURN                         cursor_rec IS
+
+  l_desctab     DBMS_SQL.DESC_TAB;
+  l_cursor_rec  cursor_rec;
+  l_n_cols      PLS_INTEGER;
+  l_chr_val     VARCHAR2(4000);
+  l_num_val     NUMBER;
+  l_dat_val     DATE;
+  l_stp_val     TIMESTAMP;
+BEGIN
+
+  l_cursor_rec.csr_id := DBMS_SQL.To_Cursor_Number(x_csr);
+  DBMS_SQL.Describe_Columns(l_cursor_rec.csr_id, l_n_cols, l_desctab);
+  l_cursor_rec.col_type_lis := L1_num_arr();
+  l_cursor_rec.col_type_lis.EXTEND(l_n_cols);
+
+  FOR i IN 1..l_n_cols LOOP
+
+    l_cursor_rec.col_type_lis(i) := l_desctab(i).col_type;
+    CASE l_desctab(i).col_type
+
+      WHEN c_chr_type THEN
+        DBMS_SQL.Define_Column(l_cursor_rec.csr_id, i, l_chr_val, 4000);
+      WHEN c_num_type THEN
+        DBMS_SQL.Define_Column(l_cursor_rec.csr_id, i, l_num_val);
+      WHEN c_dat_type THEN
+        DBMS_SQL.Define_Column(l_cursor_rec.csr_id, i, l_dat_val);
+      WHEN c_stp_type THEN
+         DBMS_SQL.Define_Column(l_cursor_rec.csr_id, i, l_stp_val);
+     ELSE
+        Raise_Error('Cursor_to_Array: Col type ' || l_desctab(i).col_type || 
+          ' not accounted for!');
+
+    END CASE;
+
+  END LOOP;
+  RETURN l_cursor_rec;
+END Prep_Cursor;
+
+FUNCTION Pipe_Cursor(  
+            p_cursor_rec                   cursor_rec,
+            p_filter                       VARCHAR2 := NULL,
+            p_delim                        VARCHAR2 := DELIM)
+            RETURN                         L1_chr_arr
+            PIPELINED IS
+
+  l_chr_val     VARCHAR2(4000);
+  l_num_val     NUMBER;
+  l_dat_val     DATE;
+  l_stp_val     TIMESTAMP;
+  l_val_lis     L1_chr_arr;
+  l_rec         VARCHAR2(4000);
+BEGIN
+  WHILE DBMS_SQL.Fetch_Rows(p_cursor_rec.csr_id) > 0 LOOP
+
+    l_val_lis := L1_chr_arr();
+    l_val_lis.EXTEND(p_cursor_rec.col_type_lis.COUNT);
+    FOR i IN 1 .. p_cursor_rec.col_type_lis.COUNT LOOP
+
+      CASE p_cursor_rec.col_type_lis(i)
+        WHEN c_chr_type THEN
+          DBMS_SQL.Column_Value(p_cursor_rec.csr_id, i, l_chr_val); -- type of l_chr_val etc. has to match
+          l_val_lis(i) := l_chr_val;
+        WHEN c_num_type THEN
+          DBMS_SQL.Column_Value(p_cursor_rec.csr_id, i, l_num_val);
+          l_val_lis(i) := l_num_val;
+        WHEN c_dat_type THEN
+          DBMS_SQL.Column_Value(p_cursor_rec.csr_id, i, l_dat_val);
+          l_val_lis(i) := l_dat_val;
+        WHEN c_stp_type THEN
+          DBMS_SQL.Column_Value(p_cursor_rec.csr_id, i, l_stp_val);
+          l_val_lis(i) := l_stp_val;
+        ELSE
+          W(p_cursor_rec.col_type_lis(i));
+      END CASE;
+
+    END LOOP;
+    l_rec := Join_Values(p_value_lis => l_val_lis, p_delim => p_delim);
+    IF p_filter IS NULL OR RegExp_Like(l_rec, p_filter) THEN
+      PIPE ROW(l_rec);
+    END IF;
+
+  END LOOP;
+
+END Pipe_Cursor;
 
 /***************************************************************************************************
 
@@ -347,17 +434,20 @@ END IntervalDS_To_Seconds;
 /***************************************************************************************************
 
 Sleep: Custom sleep for testing, with CPU content, using DBMS_Lock.Sleep for the non-CPU part
+       Note that the actual fraction of CPU usage is generally some way below target.
 
 ***************************************************************************************************/
 PROCEDURE Sleep(
             p_ela_seconds                  NUMBER,           -- elapsed time to sleep
-            p_fraction_CPU                 NUMBER := 0.5) IS -- fraction of elapsed time to use CPU
+            p_fraction_CPU                 NUMBER := 0.5) IS -- target fraction of elapsed time to use CPU
   l_ela_start TIMESTAMP := SYSTIMESTAMP;
+  l_x PLS_INTEGER := 0;    
 BEGIN
 
   WHILE SYSTIMESTAMP < l_ela_start + NumToDSInterval(p_fraction_CPU * p_ela_seconds, 'second') LOOP
 
-    NULL;
+--    NULL;
+    l_x := l_x + 1;
 
   END LOOP;
   DBMS_Lock.Sleep((1 - p_fraction_CPU) * p_ela_seconds);
@@ -384,13 +474,15 @@ W: Overloaded procedure to write a line, or an array of lines, to output using D
 ***************************************************************************************************/
 PROCEDURE W(p_line                         VARCHAR2) IS -- line of text to write
 BEGIN
-  DBMS_Output.Put_line(p_line);
+  IF g_w_is_active THEN
+    DBMS_Output.Put_line(p_line);
+  END IF;
 END W;
 
 PROCEDURE W(p_line_lis                     L1_chr_arr) IS -- array of lines of text to write
 BEGIN
   FOR i IN 1..p_line_lis.COUNT LOOP
-    DBMS_Output.Put_line(p_line_lis(i));
+    W(p_line_lis(i));
   END LOOP;
 END W;
 
@@ -470,18 +562,20 @@ get_SQL_Id: Given a marker string to match against in v$sql get the sql_id
 ***************************************************************************************************/
 FUNCTION get_SQL_Id(
             p_sql_marker                 VARCHAR2)          -- marker string
-                                         RETURN VARCHAR2 IS -- sql id
-  l_sql_id VARCHAR2(60);
+                                         RETURN L1_chr_arr IS -- sql id
+  l_sql_id          VARCHAR2(60);
+  l_child_number    PLS_INTEGER;
 BEGIN
 
-  SELECT Max(sql_id) KEEP (DENSE_RANK LAST ORDER BY last_load_time)
-    INTO l_sql_id
+  SELECT Max(sql_id) KEEP (DENSE_RANK LAST ORDER BY last_active_time),
+         Max(child_number) KEEP (DENSE_RANK LAST ORDER BY last_active_time)
+    INTO l_sql_id, l_child_number
     FROM v$sql
    WHERE sql_text LIKE '% ' || p_sql_marker || ' %' 
      AND UPPER(sql_text) NOT LIKE '%SQL_TEXT LIKE%' -- excludes this query
      AND plan_hash_value != 0;                      -- excludes PL/SQL blocks
 
-  RETURN l_sql_id;
+  RETURN L1_chr_arr(l_sql_id, To_Char(l_child_number));
 
 END get_SQL_Id;
 
@@ -496,15 +590,18 @@ FUNCTION Get_XPlan(
             p_add_outline                  BOOLEAN DEFAULT FALSE) -- repeat the plan with outline added
             RETURN                         L1_chr_arr IS          -- list of XPlan lines
 
-  l_sql_id      VARCHAR2(60) := get_SQL_Id (p_sql_marker);
-  l_xplan_lis   L1_chr_arr := L1_chr_arr();
+  l_xplan_lis         L1_chr_arr := L1_chr_arr();
+  l_v$sql_lis         L1_chr_arr := get_SQL_Id (p_sql_marker);
+  l_sql_id            VARCHAR2(60) := l_v$sql_lis(1);
 
   PROCEDURE Ins_Plan(p_type VARCHAR2) IS
   BEGIN
 
     FOR rec IN (
         SELECT plan_table_output
-          FROM TABLE(DBMS_XPlan.Display_Cursor(l_sql_id, NULL, p_type))
+          FROM TABLE(DBMS_XPlan.Display_Cursor(sql_id          => l_sql_id, 
+                                               cursor_child_no => l_v$sql_lis(2),
+                                               format          => p_type))
                ) LOOP
       l_xplan_lis.EXTEND;
       l_xplan_lis(l_xplan_lis.COUNT) := rec.plan_table_output;
@@ -515,13 +612,16 @@ FUNCTION Get_XPlan(
 
 BEGIN
 
-  Ins_Plan ('ALLSTATS LAST');
-  IF p_add_outline THEN
-
-    Ins_Plan ('OUTLINE LAST');
-
+  IF l_sql_id IS NULL THEN
+    w('SQL id is null for marker ' || p_sql_marker);
+  ELSE
+    Ins_Plan ('ALLSTATS LAST');
+    IF p_add_outline THEN
+  
+      Ins_Plan ('OUTLINE LAST');
+  
+    END IF;
   END IF;
-
   RETURN l_xplan_lis;
 
 END Get_XPlan;

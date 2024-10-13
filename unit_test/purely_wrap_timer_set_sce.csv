@@ -1,0 +1,24 @@
+Category Set,Scenario,Active
+Timer Timing Multiplicity,One timing for a timer,Y
+Timer Timing Multiplicity,Multiple timings for a timer,Y
+Timer Multiplicity,No timer in timer set,Y
+Timer Multiplicity,One timer in timer set,Y
+Timer Multiplicity,Multiple timers in timer set,Y
+Timer Set Multiplicity,One timer set,Y
+Timer Set Multiplicity,Multiple non-overlapping timer sets,Y
+Timer Set Multiplicity,Multiple timer sets with overlapping,Y
+Decimals Multiplicity,No decimal places,Y
+Decimals Multiplicity,One decimal place,Y
+Decimals Multiplicity,Multiple decimal places,Y
+Value Size,Small values,Y
+Value Size,Medium values,Y
+Value Size,Large values,Y
+Parameter Defaults,None defaulted,Y
+Parameter Defaults,All defaulted,Y
+Entry Points Called,All entry points called,Y
+Timings Mocked,Timings real,Y
+Parameter Validation,All parameters just valid,Y
+Parameter Validation,Parameter invalid: Calls width < 5,Y
+Parameter Validation,Parameter invalid: Time width < 6,Y
+Parameter Validation,Parameter invalid: Time width - time DP < 2,Y
+Parameter Validation,Parameter invalid: Time width - time DP > 1,Y

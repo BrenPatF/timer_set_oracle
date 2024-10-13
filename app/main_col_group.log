@@ -1,37 +1,37 @@
 
-Database             Time                 Version
--------------------- -------------------- ------------------------------
-Start: ORCL          16-MAY-2021 07:52:48
+Database                       Time                 Version
+------------------------------ -------------------- ------------------------------
+Start: FREE / ORCLPDB          13-OCT-2024 16:13:57 Version 23.4.0.24.05
 
 As Is
 =====
 Team                             Apps
 ------------------------------  -----
-Chelsea                          1147
-Newcastle                        1247
 team_name_2                         1
 team_name_1                         1
+West Brom                        1219
+Swansea                          1180
+Blackburn                          33
+Bolton                             37
+Chelsea                          1147
+Arsenal                           534
+Everton                          1147
 Tottenham                        1288
+Fulham                           1209
+QPR                              1517
 Liverpool                        1227
 Sunderland                       1162
-Wigan                            1036
 Man City                         1099
-Southampton                      1110
-Fulham                           1209
+Man Utd                          1231
+Newcastle                        1247
 Stoke City                       1170
 Wolves                             31
-West Ham                         1126
-Everton                          1147
-Reading                          1167
-West Brom                        1219
-Blackburn                          33
 Aston Villa                       685
-Swansea                          1180
-Bolton                             37
-Arsenal                           534
-QPR                              1517
-Man Utd                          1231
+Wigan                            1036
 Norwich                          1229
+West Ham                         1126
+Reading                          1167
+Southampton                      1110
 Sorted by Key
 =============
 Team                             Apps
@@ -90,24 +90,24 @@ Man Utd                          1231
 Newcastle                        1247
 Tottenham                        1288
 QPR                              1517
-Timer Set: Col Group, Constructed at 16 May 2021 07:52:48, written at 07:52:49
+Timer Set: Col Group, Constructed at 13 Oct 2024 16:13:57, written at 16:13:57
 ==============================================================================
 Timer             Elapsed         CPU       Calls       Ela/Call       CPU/Call
 -------------  ----------  ----------  ----------  -------------  -------------
-Load File            0.99        0.31           1        0.98700        0.31000
-List_Asis            0.01        0.01           1        0.00700        0.01000
-Sort_By_Key          0.00        0.01           1        0.00400        0.01000
-Sort_By_Value        0.00        0.00           1        0.00400        0.00000
+Load File            0.14        0.04           1        0.14117        0.04000
+List_Asis            0.00        0.00           1        0.00102        0.00000
+Sort_By_Key          0.00        0.00           1        0.00377        0.00000
+Sort_By_Value        0.00        0.00           1        0.00200        0.00000
 (Other)              0.00        0.00           1        0.00000        0.00000
 -------------  ----------  ----------  ----------  -------------  -------------
-Total                1.00        0.33           5        0.20040        0.06600
+Total                0.15        0.04           5        0.02959        0.00800
 -------------  ----------  ----------  ----------  -------------  -------------
-[Timer timed (per call in ms): Elapsed: 0.01923, CPU: 0.01923]
+[Timer timed (per call in ms): Elapsed: 0.02710, CPU: 0.02632]
 
 PL/SQL procedure successfully completed.
 
 
 'END:'||TO_CHAR(SYSDATE,'DD-MON-YY
 ----------------------------------
-End: 16-MAY-2021 07:52:49
+End: 13-OCT-2024 16:13:57
 

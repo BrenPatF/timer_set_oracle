@@ -37,9 +37,20 @@ text format, and a sample set of listings is included in the folder test_data\te
 
 ***************************************************************************************************/
 
+/***************************************************************************************************
+Purely_Wrap_Timer_Set: Unit test wrapper function for the Timer_Set package
+
+    Returns the 'actual' outputs, given the inputs for a scenario, with the signature expected for
+    the Math Function Unit Testing design pattern, namely:
+
+      Input parameter: 3-level list (type L3_chr_arr) with test inputs as group/record/field
+      Return Value: 2-level list (type L2_chr_arr) with test outputs as group/record (with record as
+                   delimited fields string)
+
+***************************************************************************************************/
 FUNCTION Purely_Wrap_Timer_Set(
-              p_inp_3lis                     L3_chr_arr)
-              RETURN                         L2_chr_arr;
+            p_inp_3lis                     L3_chr_arr) -- input list of lists (group, record, field)
+            RETURN                         L2_chr_arr; -- output list of lists (group, record)
 
 END TT_Timer_Set;
 /

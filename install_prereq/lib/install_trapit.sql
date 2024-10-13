@@ -1,6 +1,6 @@
 WHENEVER SQLERROR CONTINUE
 DEFINE app=&1
-@..\initspool install_trapit
+@..\..\initspool install_trapit
 /***************************************************************************************************
 Name: install_trapit.sql               Author: Brendan Furey                       Date: 19-May-2019
 
@@ -106,4 +106,5 @@ WHENEVER SQLERROR EXIT
 EXEC IF '&app' = 'none' THEN RAISE_APPLICATION_ERROR(-20000, 'Skipping schema grants'); END IF;
 @grant_trapit_to_app &app
 
-@..\endspool
+@..\..\endspool
+exit

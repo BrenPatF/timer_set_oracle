@@ -1,0 +1,28 @@
+
+SQL*Plus: Release 23.0.0.0.0 - Production on Sun Oct 13 16:14:30 2024
+Version 23.4.0.24.05
+
+Copyright (c) 1982, 2024, Oracle.  All rights reserved.
+
+Last Successful login time: Sun Oct 13 2024 16:13:25 +01:00
+
+Connected to:
+Oracle Database 23ai Free Release 23.0.0.0.0 - Production
+Version 23.4.0.24.05
+
+SQL> SQL>   2    3    4    5    6    7    8    9   10   11   12  !
+c:/input\tt_timer_set.purely_wrap_timer_set_out.json
+!
+
+PL/SQL procedure successfully completed.
+
+SQL> Disconnected from Oracle Database 23ai Free Release 23.0.0.0.0 - Production
+Version 23.4.0.24.05
+ 
+File:          tt_timer_set.purely_wrap_timer_set_out.json
+Title:         Timer Set Oracle PL/SQL
+Inp Groups:    2
+Out Groups:    9
+Tests:         23
+Fails:         0
+Folder:        timer-set-oracle-pl_sql

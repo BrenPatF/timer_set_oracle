@@ -45,3 +45,4 @@ Synonyms created:
 PROMPT Creating synonyms for &lib Timer_Set components...
 CREATE OR REPLACE SYNONYM Timer_Set FOR &lib..Timer_Set
 /
+exit

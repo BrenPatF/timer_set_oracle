@@ -1,9 +1,11 @@
 
-Database             Time                 Version
--------------------- -------------------- ------------------------------
-Start: ORCL          26-MAR-2020 11:08:22 Version 19.3.0.0.0
+Database                       Time                 Version
+------------------------------ -------------------- ------------------------------
+Start: FREE / ORCLPDB          13-OCT-2024 16:13:24 Version 23.4.0.24.05
 
 Create directory input_dir
+old   1: CREATE OR REPLACE DIRECTORY input_dir AS '&input_dir'
+new   1: CREATE OR REPLACE DIRECTORY input_dir AS 'c:/input'
 
 Directory created.
 
@@ -179,5 +181,5 @@ Grant succeeded.
 
 'END:'||TO_CHAR(SYSDATE,'DD-MON-YY
 ----------------------------------
-End: 26-MAR-2020 11:08:22
+End: 13-OCT-2024 16:13:24
 

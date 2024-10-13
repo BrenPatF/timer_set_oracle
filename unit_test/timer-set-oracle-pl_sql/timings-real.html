@@ -1,0 +1,126 @@
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  background-color: #dddddd;
+  border: 1px solid #030303;
+  text-align: left;
+  padding: 8px;
+}
+    td {
+      font-weight: bold;
+      border: 1px solid #030303;
+      text-align: left;
+      padding: 8px;
+      white-space: pre;
+      font-family: "Courier New", Courier, monospace
+    }
+h1 {margin-top: 0em; margin-bottom: 0em;
+  font-family: arial, sans-serif;
+  width: 100%;
+  font-size: 300%;
+  background-color: #FFFF00;
+}
+h2 {margin-top: 0em; margin-bottom: 0em;
+  font-family: arial, sans-serif;
+  width: 100%;
+  font-size: 200%;
+  background-color: #2AE6C1;
+}
+h3 {margin-top: 0em; margin-bottom: 0em;
+  font-family: arial, sans-serif;
+  width: 100%;
+  font-size: 150%;
+  background-color: #33F0FF;
+}
+h4 {margin-top: 0em; margin-bottom: 0em;
+  font-family: arial, sans-serif;
+  width: 100%;
+  font-size: 125%;
+  background-color: #7DFF33;
+}
+</style>
+</head>
+<body>
+<h2>SCENARIO 18: Timings real [Category Set: Timings Mocked]</h2>
+<h3>INPUTS</h3>
+<h4>GROUP 1: Event Sequence</h4>
+<table>
+<tr><th>#</th><th>Set Name</th><th>Timer Name</th><th>Event</th><th>Elapsed Time (s)</th><th>CPU Time (cs)</th></tr>
+<tr><td>1</td><td>Set 1</td><td></td><td>CON</td><td>0.3000</td><td>80</td></tr>
+<tr><td>2</td><td>Set 1</td><td>Timer 1</td><td>INC</td><td>0.123</td><td>925.6</td></tr>
+<tr><td>3</td><td>Set 1</td><td></td><td>INI</td><td>0.615</td><td>008</td></tr>
+<tr><td>4</td><td>Set 1</td><td>Timer 1</td><td>INC</td><td>0.738</td><td>5153.6</td></tr>
+<tr><td>5</td><td>Set 1</td><td></td><td>GET</td><td>0.861</td><td>99.2</td></tr>
+<tr><td>6</td><td>Set 1</td><td></td><td>GETF</td><td>0.861</td><td>99.2</td></tr>
+<tr><td>7</td><td>Set 1</td><td></td><td>RES</td><td>0.861</td><td>99.2</td></tr>
+<tr><td>8</td><td>Set 1</td><td></td><td>SELF</td><td>0.861</td><td>99.2</td></tr>
+<tr><td>9</td><td>Set 1</td><td></td><td>SELFF</td><td>0.861</td><td>99.2</td></tr>
+</table>
+<h4></h4>
+<h4>GROUP 2: Scalars</h4>
+<table>
+<tr><th>#</th><th>Mock Flag</th><th>Time Width</th><th>Decimal Places (Totals)</th><th>Decimal Places (per call)</th><th>Calls Width</th></tr>
+<tr><td>1</td><td>N</td><td></td><td></td><td></td><td></td></tr>
+</table>
+<h4></h4>
+<h3>OUTPUTS</h3>
+<h4>GROUP 1: Set 1</h4>
+<table>
+<tr><th>#</th><th>Timer Name</th><th>Elapsed Time</th><th>CPU Time</th><th>#Calls</th></tr>
+<tr><td>1</td><td>Timer 1</td><td>IN [.1500000,2.5000000]: .866894</td><td>IN [.075000,1.2500000]: .19</td><td>2</td></tr>
+<tr><td>2</td><td>(Other)</td><td>IN [.3000000,5.0000000]: 1.488725</td><td>IN [.150000,2.50000000: .33</td><td>1</td></tr>
+<tr><td>3</td><td>Total</td><td>IN [.6000000,8.0000000]: 2.355619</td><td>IN [.300000,4.0000000]: .52</td><td>3</td></tr>
+</table>
+<h4>0 failed of 3: SUCCESS</h4>
+<h4>GROUP 2: Set 1 (formatted)</h4>
+<table>
+<tr><th>#</th><th>Line</th></tr>
+<tr><td>1</td><td>Timer       Elapsed         CPU       Calls       Ela/Call       CPU/Call</td></tr>
+<tr><td>2</td><td>-------  ----------  ----------  ----------  -------------  -------------</td></tr>
+<tr><td>3</td><td>LIKE /Timer 1.*/: Timer 1        0.87        0.19           2        0.43345        0.09500</td></tr>
+<tr><td>4</td><td>LIKE /\(Other\).*/: (Other)        1.49        0.33           1        1.48873        0.33000</td></tr>
+<tr><td>5</td><td>-------  ----------  ----------  ----------  -------------  -------------</td></tr>
+<tr><td>6</td><td>LIKE /Total.*/: Total          2.36        0.52           3        0.78521        0.17333</td></tr>
+<tr><td>7</td><td>-------  ----------  ----------  ----------  -------------  -------------</td></tr>
+</table>
+<h4>0 failed of 7: SUCCESS</h4>
+<h4>GROUP 3: Set 2: Empty as expected: SUCCESS</h4>
+<h4>GROUP 4: Set 2 (formatted): Empty as expected: SUCCESS</h4>
+<h4>GROUP 5: Self (unmocked)</h4>
+<table>
+<tr><th>#</th><th>Elapsed Time</th><th>CPU Time</th></tr>
+<tr><td>1</td><td>IN [.000003, .00009]: .000021595</td><td>IN [.000001, .00005]: .00001086956521739130434782608695652173913043</td></tr>
+</table>
+<h4>0 failed of 1: SUCCESS</h4>
+<h4>GROUP 6: Self (unmocked, formatted)</h4>
+<table>
+<tr><th>#</th><th>Self Timing Ratios</th></tr>
+<tr><td>1</td><td>LIKE /\[Timer timed \(per call in ms\): Elapsed: .*\]/: [Timer timed (per call in ms): Elapsed: 0.02736, CPU: 0.02432]</td></tr>
+</table>
+<h4>0 failed of 1: SUCCESS</h4>
+<h4>GROUP 7: Results</h4>
+<table>
+<tr><th>#</th><th>Lines</th></tr>
+<tr><td>1</td><td>LIKE /Timer Set: Set 1, Constructed at .*, written at.*/: Timer Set: Set 1, Constructed at 13 Oct 2024 16:14:31, written at 16:14:35</td></tr>
+<tr><td>2</td><td>==========================================================================</td></tr>
+<tr><td>3</td><td>Timer       Elapsed         CPU       Calls       Ela/Call       CPU/Call</td></tr>
+<tr><td>4</td><td>-------  ----------  ----------  ----------  -------------  -------------</td></tr>
+<tr><td>5</td><td>LIKE /Timer 1.*/: Timer 1        0.87        0.19           2        0.43345        0.09500</td></tr>
+<tr><td>6</td><td>LIKE /\(Other\).*/: (Other)        1.49        0.33           1        1.48873        0.33000</td></tr>
+<tr><td>7</td><td>-------  ----------  ----------  ----------  -------------  -------------</td></tr>
+<tr><td>8</td><td>LIKE /Total.*/: Total          2.36        0.52           3        0.78521        0.17333</td></tr>
+<tr><td>9</td><td>-------  ----------  ----------  ----------  -------------  -------------</td></tr>
+<tr><td>10</td><td>LIKE /\[Timer timed.*\]/: [Timer timed (per call in ms): Elapsed: 0.02707, CPU: 0.01081]</td></tr>
+</table>
+<h4>0 failed of 10: SUCCESS</h4>
+<h4>GROUP 8: Exception: Empty as expected: SUCCESS</h4>
+<h4>GROUP 9: Unhandled Exception: Empty as expected: SUCCESS</h4>
+<h2>0 failed of 9: SUCCESS</h2>
+</body></html>

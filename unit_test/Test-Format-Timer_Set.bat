@@ -1,0 +1,1 @@
+pwsh -file .\Test-Format-Timer_Set.ps1  > .\Test-Format-Timer_Set.out 2> .\Test-Format-Timer_Set.err

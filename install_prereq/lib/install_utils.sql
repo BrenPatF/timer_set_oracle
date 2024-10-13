@@ -1,6 +1,6 @@
 WHENEVER SQLERROR CONTINUE
 DEFINE app=&1
-@..\initspool install_utils
+@..\..\initspool install_utils
 /***************************************************************************************************
 Name: install_utils.sql                Author: Brendan Furey                       Date: 26-May-2019
 
@@ -85,4 +85,4 @@ WHENEVER SQLERROR EXIT
 EXEC IF '&app' = 'none' THEN RAISE_APPLICATION_ERROR(-20000, 'Skipping schema grants'); END IF;
 @grant_utils_to_app &app
 
-@..\endspool
+@..\..\endspool

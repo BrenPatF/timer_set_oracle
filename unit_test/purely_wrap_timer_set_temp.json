@@ -1,0 +1,931 @@
+{
+  "meta": {
+    "title": "title",
+    "delimiter": "|",
+    "inp": {
+      "Event Sequence": [
+        "Set Name",
+        "Timer Name",
+        "Event",
+        "Elapsed Time (s)",
+        "CPU Time (cs)"
+      ],
+      "Scalars": [
+        "Mock Flag",
+        "Time Width",
+        "Decimal Places (Totals)",
+        "Decimal Places (per call)",
+        "Calls Width"
+      ]
+    },
+    "out": {
+      "Set 1": [
+        "Timer Name",
+        "Elapsed Time",
+        "CPU Time",
+        "#Calls"
+      ],
+      "Set 1 (formatted)": [
+        "Line"
+      ],
+      "Set 2": [
+        "Timer Name",
+        "Elapsed Time",
+        "CPU Time",
+        "#Calls"
+      ],
+      "Set 2 (formatted)": [
+        "Line"
+      ],
+      "Self (unmocked)": [
+        "Elapsed Time",
+        "CPU Time"
+      ],
+      "Self (unmocked, formatted)": [
+        "Self Timing Ratios"
+      ],
+      "Results": [
+        "Lines"
+      ],
+      "Exception": [
+        "1 Message, 2 Stack"
+      ]
+    }
+  },
+  "scenarios": {
+    "One timing for a timer": {
+      "active_yn": "Y",
+      "category_set": "Timer Timing Multiplicity",
+      "inp": {
+        "Event Sequence": [
+          "||||"
+        ],
+        "Scalars": [
+          "||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+          "|||"
+        ],
+        "Set 1 (formatted)": [
+          ""
+        ],
+        "Set 2": [
+          "|||"
+        ],
+        "Set 2 (formatted)": [
+          ""
+        ],
+        "Self (unmocked)": [
+          "|"
+        ],
+        "Self (unmocked, formatted)": [
+          ""
+        ],
+        "Results": [
+          ""
+        ],
+        "Exception": [
+          ""
+        ]
+      }
+    },
+    "Multiple timings for a timer": {
+      "active_yn": "Y",
+      "category_set": "Timer Timing Multiplicity",
+      "inp": {
+        "Event Sequence": [
+          "||||"
+        ],
+        "Scalars": [
+          "||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+          "|||"
+        ],
+        "Set 1 (formatted)": [
+          ""
+        ],
+        "Set 2": [
+          "|||"
+        ],
+        "Set 2 (formatted)": [
+          ""
+        ],
+        "Self (unmocked)": [
+          "|"
+        ],
+        "Self (unmocked, formatted)": [
+          ""
+        ],
+        "Results": [
+          ""
+        ],
+        "Exception": [
+          ""
+        ]
+      }
+    },
+    "No timer in timer set": {
+      "active_yn": "Y",
+      "category_set": "Timer Multiplicity",
+      "inp": {
+        "Event Sequence": [
+          "||||"
+        ],
+        "Scalars": [
+          "||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+          "|||"
+        ],
+        "Set 1 (formatted)": [
+          ""
+        ],
+        "Set 2": [
+          "|||"
+        ],
+        "Set 2 (formatted)": [
+          ""
+        ],
+        "Self (unmocked)": [
+          "|"
+        ],
+        "Self (unmocked, formatted)": [
+          ""
+        ],
+        "Results": [
+          ""
+        ],
+        "Exception": [
+          ""
+        ]
+      }
+    },
+    "One timer in timer set": {
+      "active_yn": "Y",
+      "category_set": "Timer Multiplicity",
+      "inp": {
+        "Event Sequence": [
+          "||||"
+        ],
+        "Scalars": [
+          "||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+          "|||"
+        ],
+        "Set 1 (formatted)": [
+          ""
+        ],
+        "Set 2": [
+          "|||"
+        ],
+        "Set 2 (formatted)": [
+          ""
+        ],
+        "Self (unmocked)": [
+          "|"
+        ],
+        "Self (unmocked, formatted)": [
+          ""
+        ],
+        "Results": [
+          ""
+        ],
+        "Exception": [
+          ""
+        ]
+      }
+    },
+    "Multiple timers in timer set": {
+      "active_yn": "Y",
+      "category_set": "Timer Multiplicity",
+      "inp": {
+        "Event Sequence": [
+          "||||"
+        ],
+        "Scalars": [
+          "||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+          "|||"
+        ],
+        "Set 1 (formatted)": [
+          ""
+        ],
+        "Set 2": [
+          "|||"
+        ],
+        "Set 2 (formatted)": [
+          ""
+        ],
+        "Self (unmocked)": [
+          "|"
+        ],
+        "Self (unmocked, formatted)": [
+          ""
+        ],
+        "Results": [
+          ""
+        ],
+        "Exception": [
+          ""
+        ]
+      }
+    },
+    "One timer set": {
+      "active_yn": "Y",
+      "category_set": "Timer Set Multiplicity",
+      "inp": {
+        "Event Sequence": [
+          "||||"
+        ],
+        "Scalars": [
+          "||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+          "|||"
+        ],
+        "Set 1 (formatted)": [
+          ""
+        ],
+        "Set 2": [
+          "|||"
+        ],
+        "Set 2 (formatted)": [
+          ""
+        ],
+        "Self (unmocked)": [
+          "|"
+        ],
+        "Self (unmocked, formatted)": [
+          ""
+        ],
+        "Results": [
+          ""
+        ],
+        "Exception": [
+          ""
+        ]
+      }
+    },
+    "Multiple non-overlapping timer sets": {
+      "active_yn": "Y",
+      "category_set": "Timer Set Multiplicity",
+      "inp": {
+        "Event Sequence": [
+          "||||"
+        ],
+        "Scalars": [
+          "||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+          "|||"
+        ],
+        "Set 1 (formatted)": [
+          ""
+        ],
+        "Set 2": [
+          "|||"
+        ],
+        "Set 2 (formatted)": [
+          ""
+        ],
+        "Self (unmocked)": [
+          "|"
+        ],
+        "Self (unmocked, formatted)": [
+          ""
+        ],
+        "Results": [
+          ""
+        ],
+        "Exception": [
+          ""
+        ]
+      }
+    },
+    "Multiple timer sets with overlapping": {
+      "active_yn": "Y",
+      "category_set": "Timer Set Multiplicity",
+      "inp": {
+        "Event Sequence": [
+          "||||"
+        ],
+        "Scalars": [
+          "||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+          "|||"
+        ],
+        "Set 1 (formatted)": [
+          ""
+        ],
+        "Set 2": [
+          "|||"
+        ],
+        "Set 2 (formatted)": [
+          ""
+        ],
+        "Self (unmocked)": [
+          "|"
+        ],
+        "Self (unmocked, formatted)": [
+          ""
+        ],
+        "Results": [
+          ""
+        ],
+        "Exception": [
+          ""
+        ]
+      }
+    },
+    "No decimal places": {
+      "active_yn": "Y",
+      "category_set": "Decimals Multiplicity",
+      "inp": {
+        "Event Sequence": [
+          "||||"
+        ],
+        "Scalars": [
+          "||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+          "|||"
+        ],
+        "Set 1 (formatted)": [
+          ""
+        ],
+        "Set 2": [
+          "|||"
+        ],
+        "Set 2 (formatted)": [
+          ""
+        ],
+        "Self (unmocked)": [
+          "|"
+        ],
+        "Self (unmocked, formatted)": [
+          ""
+        ],
+        "Results": [
+          ""
+        ],
+        "Exception": [
+          ""
+        ]
+      }
+    },
+    "One decimal place": {
+      "active_yn": "Y",
+      "category_set": "Decimals Multiplicity",
+      "inp": {
+        "Event Sequence": [
+          "||||"
+        ],
+        "Scalars": [
+          "||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+          "|||"
+        ],
+        "Set 1 (formatted)": [
+          ""
+        ],
+        "Set 2": [
+          "|||"
+        ],
+        "Set 2 (formatted)": [
+          ""
+        ],
+        "Self (unmocked)": [
+          "|"
+        ],
+        "Self (unmocked, formatted)": [
+          ""
+        ],
+        "Results": [
+          ""
+        ],
+        "Exception": [
+          ""
+        ]
+      }
+    },
+    "Multiple decimal places": {
+      "active_yn": "Y",
+      "category_set": "Decimals Multiplicity",
+      "inp": {
+        "Event Sequence": [
+          "||||"
+        ],
+        "Scalars": [
+          "||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+          "|||"
+        ],
+        "Set 1 (formatted)": [
+          ""
+        ],
+        "Set 2": [
+          "|||"
+        ],
+        "Set 2 (formatted)": [
+          ""
+        ],
+        "Self (unmocked)": [
+          "|"
+        ],
+        "Self (unmocked, formatted)": [
+          ""
+        ],
+        "Results": [
+          ""
+        ],
+        "Exception": [
+          ""
+        ]
+      }
+    },
+    "Small values": {
+      "active_yn": "Y",
+      "category_set": "Value Size",
+      "inp": {
+        "Event Sequence": [
+          "||||"
+        ],
+        "Scalars": [
+          "||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+          "|||"
+        ],
+        "Set 1 (formatted)": [
+          ""
+        ],
+        "Set 2": [
+          "|||"
+        ],
+        "Set 2 (formatted)": [
+          ""
+        ],
+        "Self (unmocked)": [
+          "|"
+        ],
+        "Self (unmocked, formatted)": [
+          ""
+        ],
+        "Results": [
+          ""
+        ],
+        "Exception": [
+          ""
+        ]
+      }
+    },
+    "Medium values": {
+      "active_yn": "Y",
+      "category_set": "Value Size",
+      "inp": {
+        "Event Sequence": [
+          "||||"
+        ],
+        "Scalars": [
+          "||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+          "|||"
+        ],
+        "Set 1 (formatted)": [
+          ""
+        ],
+        "Set 2": [
+          "|||"
+        ],
+        "Set 2 (formatted)": [
+          ""
+        ],
+        "Self (unmocked)": [
+          "|"
+        ],
+        "Self (unmocked, formatted)": [
+          ""
+        ],
+        "Results": [
+          ""
+        ],
+        "Exception": [
+          ""
+        ]
+      }
+    },
+    "Large values": {
+      "active_yn": "Y",
+      "category_set": "Value Size",
+      "inp": {
+        "Event Sequence": [
+          "||||"
+        ],
+        "Scalars": [
+          "||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+          "|||"
+        ],
+        "Set 1 (formatted)": [
+          ""
+        ],
+        "Set 2": [
+          "|||"
+        ],
+        "Set 2 (formatted)": [
+          ""
+        ],
+        "Self (unmocked)": [
+          "|"
+        ],
+        "Self (unmocked, formatted)": [
+          ""
+        ],
+        "Results": [
+          ""
+        ],
+        "Exception": [
+          ""
+        ]
+      }
+    },
+    "None defaulted": {
+      "active_yn": "Y",
+      "category_set": "Parameter Defaults",
+      "inp": {
+        "Event Sequence": [
+          "||||"
+        ],
+        "Scalars": [
+          "||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+          "|||"
+        ],
+        "Set 1 (formatted)": [
+          ""
+        ],
+        "Set 2": [
+          "|||"
+        ],
+        "Set 2 (formatted)": [
+          ""
+        ],
+        "Self (unmocked)": [
+          "|"
+        ],
+        "Self (unmocked, formatted)": [
+          ""
+        ],
+        "Results": [
+          ""
+        ],
+        "Exception": [
+          ""
+        ]
+      }
+    },
+    "All defaulted": {
+      "active_yn": "Y",
+      "category_set": "Parameter Defaults",
+      "inp": {
+        "Event Sequence": [
+          "||||"
+        ],
+        "Scalars": [
+          "||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+          "|||"
+        ],
+        "Set 1 (formatted)": [
+          ""
+        ],
+        "Set 2": [
+          "|||"
+        ],
+        "Set 2 (formatted)": [
+          ""
+        ],
+        "Self (unmocked)": [
+          "|"
+        ],
+        "Self (unmocked, formatted)": [
+          ""
+        ],
+        "Results": [
+          ""
+        ],
+        "Exception": [
+          ""
+        ]
+      }
+    },
+    "All entry points called": {
+      "active_yn": "Y",
+      "category_set": "Entry Points Called",
+      "inp": {
+        "Event Sequence": [
+          "||||"
+        ],
+        "Scalars": [
+          "||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+          "|||"
+        ],
+        "Set 1 (formatted)": [
+          ""
+        ],
+        "Set 2": [
+          "|||"
+        ],
+        "Set 2 (formatted)": [
+          ""
+        ],
+        "Self (unmocked)": [
+          "|"
+        ],
+        "Self (unmocked, formatted)": [
+          ""
+        ],
+        "Results": [
+          ""
+        ],
+        "Exception": [
+          ""
+        ]
+      }
+    },
+    "Timings real": {
+      "active_yn": "Y",
+      "category_set": "Timings Mocked",
+      "inp": {
+        "Event Sequence": [
+          "||||"
+        ],
+        "Scalars": [
+          "||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+          "|||"
+        ],
+        "Set 1 (formatted)": [
+          ""
+        ],
+        "Set 2": [
+          "|||"
+        ],
+        "Set 2 (formatted)": [
+          ""
+        ],
+        "Self (unmocked)": [
+          "|"
+        ],
+        "Self (unmocked, formatted)": [
+          ""
+        ],
+        "Results": [
+          ""
+        ],
+        "Exception": [
+          ""
+        ]
+      }
+    },
+    "All parameters just valid": {
+      "active_yn": "Y",
+      "category_set": "Parameter Validation",
+      "inp": {
+        "Event Sequence": [
+          "||||"
+        ],
+        "Scalars": [
+          "||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+          "|||"
+        ],
+        "Set 1 (formatted)": [
+          ""
+        ],
+        "Set 2": [
+          "|||"
+        ],
+        "Set 2 (formatted)": [
+          ""
+        ],
+        "Self (unmocked)": [
+          "|"
+        ],
+        "Self (unmocked, formatted)": [
+          ""
+        ],
+        "Results": [
+          ""
+        ],
+        "Exception": [
+          ""
+        ]
+      }
+    },
+    "Parameter invalid: Calls width < 5": {
+      "active_yn": "Y",
+      "category_set": "Parameter Validation",
+      "inp": {
+        "Event Sequence": [
+          "||||"
+        ],
+        "Scalars": [
+          "||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+          "|||"
+        ],
+        "Set 1 (formatted)": [
+          ""
+        ],
+        "Set 2": [
+          "|||"
+        ],
+        "Set 2 (formatted)": [
+          ""
+        ],
+        "Self (unmocked)": [
+          "|"
+        ],
+        "Self (unmocked, formatted)": [
+          ""
+        ],
+        "Results": [
+          ""
+        ],
+        "Exception": [
+          ""
+        ]
+      }
+    },
+    "Parameter invalid: Time width < 6": {
+      "active_yn": "Y",
+      "category_set": "Parameter Validation",
+      "inp": {
+        "Event Sequence": [
+          "||||"
+        ],
+        "Scalars": [
+          "||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+          "|||"
+        ],
+        "Set 1 (formatted)": [
+          ""
+        ],
+        "Set 2": [
+          "|||"
+        ],
+        "Set 2 (formatted)": [
+          ""
+        ],
+        "Self (unmocked)": [
+          "|"
+        ],
+        "Self (unmocked, formatted)": [
+          ""
+        ],
+        "Results": [
+          ""
+        ],
+        "Exception": [
+          ""
+        ]
+      }
+    },
+    "Parameter invalid: Time width - time DP < 2": {
+      "active_yn": "Y",
+      "category_set": "Parameter Validation",
+      "inp": {
+        "Event Sequence": [
+          "||||"
+        ],
+        "Scalars": [
+          "||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+          "|||"
+        ],
+        "Set 1 (formatted)": [
+          ""
+        ],
+        "Set 2": [
+          "|||"
+        ],
+        "Set 2 (formatted)": [
+          ""
+        ],
+        "Self (unmocked)": [
+          "|"
+        ],
+        "Self (unmocked, formatted)": [
+          ""
+        ],
+        "Results": [
+          ""
+        ],
+        "Exception": [
+          ""
+        ]
+      }
+    },
+    "Parameter invalid: Time width - time DP > 1": {
+      "active_yn": "Y",
+      "category_set": "Parameter Validation",
+      "inp": {
+        "Event Sequence": [
+          "||||"
+        ],
+        "Scalars": [
+          "||||"
+        ]
+      },
+      "out": {
+        "Set 1": [
+          "|||"
+        ],
+        "Set 1 (formatted)": [
+          ""
+        ],
+        "Set 2": [
+          "|||"
+        ],
+        "Set 2 (formatted)": [
+          ""
+        ],
+        "Self (unmocked)": [
+          "|"
+        ],
+        "Self (unmocked, formatted)": [
+          ""
+        ],
+        "Results": [
+          ""
+        ],
+        "Exception": [
+          ""
+        ]
+      }
+    }
+  }
+}

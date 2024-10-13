@@ -1,4 +1,7 @@
-@initspool install_sys
+DEFINE LIB_USER=&1
+DEFINE APP_USER=&2
+DEFINE input_dir=&3
+@..\initspool install_sys
 /***************************************************************************************************
 Name: install_sys.sql                  Author: Brendan Furey                       Date: 14-May-2019
 
@@ -59,11 +62,9 @@ Components created:
     Create Synonym      To allow creation of private synonyms to lib components
 
 ***************************************************************************************************/
-DEFINE LIB_USER=lib
-DEFINE APP_USER=app
 
 PROMPT Create directory input_dir
-CREATE OR REPLACE DIRECTORY input_dir AS 'C:\input'
+CREATE OR REPLACE DIRECTORY input_dir AS '&input_dir'
 /
 PROMPT Create &LIB_USER
 @c_user &LIB_USER
@@ -77,5 +78,5 @@ PROMPT Create &APP_USER
 @c_user &APP_USER
 GRANT CREATE SYNONYM TO &APP_USER
 /
-
-@endspool
+@..\endspool
+exit
