@@ -33,5 +33,8 @@ $installs = @(#@{folder = 'install_prereq';     script = 'drop_utils_users';    
               @{folder = 'install_prereq\app'; script = 'install_app_all';      schema = $appSchema; prmLis = @($libSchema)},
               @{folder = 'lib';                script = 'install_timer_set';    schema = $libSchema; prmLis = @($appSchema)},
               @{folder = 'app';                script = 'c_timer_set_syns';     schema = $appSchema; prmLis = @($libSchema)},
-              @{folder = 'lib';                script = 'install_timer_set_tt'; schema = $libSchema; prmLis = @()})
+              @{folder = 'lib';                script = 'install_timer_set_tt'; schema = $libSchema; prmLis = @()},
+              @{folder = '.';                  script = 'l_objects';            schema = $sysSchema; prmLis = @($sysSchema)},
+              @{folder = '.';                  script = 'l_objects';            schema = $libSchema; prmLis = @($libSchema)},
+              @{folder = '.';                  script = 'l_objects';            schema = $appSchema; prmLis = @($appSchema)})
 Install-OracleApp $inputPath $fileLis $installs

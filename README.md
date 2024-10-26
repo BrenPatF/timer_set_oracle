@@ -1,5 +1,6 @@
+# Timer_Set
 <img src="png/mountains.png">
-Oracle PL/SQL code timing module.
+Oracle PL/SQL Code Timing Module.
 
 :stopwatch:
 
@@ -15,7 +16,7 @@ The module is tested using [The Math Function Unit Testing Design Pattern](https
 
 # In This README...
 [&darr; Usage](#usage)<br />
-[&darr; API - Timer_Set](#api---timer_set)<br />
+[&darr; API](#api)<br />
 [&darr; Installation](#installation)<br />
 [&darr; Unit Testing](#unit-testing)<br />
 [&darr; Folder Structure](#folder-structure)<br />
@@ -70,7 +71,7 @@ SQL> @main_col_group
 ```
 
 There is also a separate [module](https://github.com/BrenPatF/oracle_plsql_api_demos) demonstrating instrumentation and logging, code timing and unit testing of Oracle PL/SQL APIs.
-## API - Timer_Set
+## API
 [&uarr; In This README...](#in-this-readme)<br />
 [&darr; Construct](#construct)<br />
 [&darr; Increment_Time](#increment_time)<br />
@@ -82,7 +83,7 @@ There is also a separate [module](https://github.com/BrenPatF/oracle_plsql_api_d
 [&darr; Format_Results](#format_results)<br />
 
 ### Construct
-[&uarr; API - Timer_Set](#api---timer_set)<br />
+[&uarr; API](#api)<br />
 ```sql
  l_timer_set   PLS_INTEGER := Timer_Set.Construct(p_ts_name, p_mock_time_lis);
 ```
@@ -100,7 +101,7 @@ Return value:
 - `[PLS_INTEGER]`: timer set id
 
 ### Increment_Time
-[&uarr; API - Timer_Set](#api---timer_set)<br />
+[&uarr; API](#api)<br />
 ```sql
 Timer_Set.Increment_Time(p_timer_set, p_timer_name);
 ```
@@ -110,7 +111,7 @@ Increments the timing statistics (elapsed, user and system CPU, and number of ca
 - `p_timer_name`: timer name
 
 ### Init_Time
-[&uarr; API - Timer_Set](#api---timer_set)<br />
+[&uarr; API](#api)<br />
 ```sql
 Timer_Set.Init_Time(p_timer_set);
 ```
@@ -119,7 +120,7 @@ Resets the statistics for timer set `p_timer_set` to the current time, so that t
 - `p_timer_set`: timer set id
 
 ### Get_Timers
-[&uarr; API - Timer_Set](#api---timer_set)<br />
+[&uarr; API](#api)<br />
 ```sql
 l_timer_stat_arr timer_stat_arr := Timer_Set.Get_Timers(p_timer_set);
 ```
@@ -141,7 +142,7 @@ After a record for each named timer, in order of creation, there are two calcula
 - `Total`: totals calculated from the times at timer set construction
 
 ### Format_Timers
-[&uarr; API - Timer_Set](#api---timer_set)<br />
+[&uarr; API](#api)<br />
 ```sql
 l_formatted_times_lis L1_chr_arr := Timer_Set.Format_Timers(p_timer_set, p_format_prms);
 ```
@@ -158,7 +159,7 @@ Return value:
 - `[L1_chr_arr]`: an array of formatted strings
 
 ### Get_Self_Timer
-[&uarr; API - Timer_Set](#api---timer_set)<br />
+[&uarr; API](#api)<br />
 ```sql
 l_self_times_lis L1_num_arr := Timer_Set.Get_Self_Timer;
 ```
@@ -170,7 +171,7 @@ Return value:
 	- `[2]`: CPU time per call in ms
 
 ### Format_Self_Timer
-[&uarr; API - Timer_Set](#api---timer_set)<br />
+[&uarr; API](#api)<br />
 ```sql
 l_self_times VARCHAR2(4000) := Timer_Set.Format_Self_Timer(p_format_prms);
 ```
@@ -187,7 +188,7 @@ Return value:
 * `[VARCHAR2]`: formatted string with elapsed and CPU times per call in milliseconds
 
 ### Format_Results
-[&uarr; API - Timer_Set](#api---timer_set)<br />
+[&uarr; API](#api)<br />
 ```sql
 l_formatted_times_lis L1_chr_arr := Timer_Set.Format_Results(p_timer_set, p_format_prms);
 ```
@@ -245,8 +246,15 @@ The Oracle installation can be performed via a single powershell script, or in a
 
 #### Automated Installation
 [&uarr; Oracle Installs](#oracle-installs)<br />
+[&darr; Running the Script](#running-the-script)<br />
+[&darr; Schema Objects Reports](#schema-objects-reports)<br />
 
 The Oracle installation can be performed simply by running the following script, Install-Timer_Set.ps1:
+
+##### Running the Script
+[&uarr; Automated Installation](#automated-installation)<br />
+
+The script can be run from a Powershell window as follows:
 
 ##### [Folder: (module root)]
 
@@ -278,8 +286,88 @@ $installs = @(#@{folder = 'install_prereq';     script = 'drop_utils_users';    
               @{folder = 'install_prereq\app'; script = 'install_app_all';      schema = $appSchema; prmLis = @($libSchema)},
               @{folder = 'lib';                script = 'install_timer_set';    schema = $libSchema; prmLis = @($appSchema)},
               @{folder = 'app';                script = 'c_timer_set_syns';     schema = $appSchema; prmLis = @($libSchema)},
-              @{folder = 'lib';                script = 'install_timer_set_tt'; schema = $libSchema; prmLis = @()})
+              @{folder = 'lib';                script = 'install_timer_set_tt'; schema = $libSchema; prmLis = @()},
+              @{folder = '.';                  script = 'l_objects';            schema = $sysSchema; prmLis = @($sysSchema)},
+              @{folder = '.';                  script = 'l_objects';            schema = $libSchema; prmLis = @($libSchema)},
+              @{folder = '.';                  script = 'l_objects';            schema = $appSchema; prmLis = @($appSchema)})
 Install-OracleApp $inputPath $fileLis $installs
+```
+##### Schema Objects Reports
+[&uarr; Automated Installation](#automated-installation)<br />
+[&darr; Sys Schema Objects](#sys-schema-objects)<br />
+[&darr; Lib Schema Objects](#lib-schema-objects)<br />
+[&darr; App Schema Objects](#app-schema-objects)<br />
+
+The script includes a report on the objects it created in each of the sys, lib and app schemas.
+
+###### Sys Schema Objects
+[&uarr; Schema Objects Reports](#schema-objects-reports)<br />
+```
+Objects in schema sys created within last minute
+
+OBJECT_TYPE             OBJECT_NAME                    STATUS
+----------------------- ------------------------------ -------
+DIRECTORY               INPUT_DIR                      VALID
+
+```
+
+###### Lib Schema Objects
+[&uarr; Schema Objects Reports](#schema-objects-reports)<br />
+```
+Objects in schema lib created within last minute
+
+OBJECT_TYPE             OBJECT_NAME                    STATUS
+----------------------- ------------------------------ -------
+INDEX                   SYS_IL0000091261C00007$$       VALID
+INDEX                   SYS_IL0000091261C00008$$       VALID
+INDEX                   UNI_PK                         VALID
+LOB                     SYS_LOB0000091261C00007$$      VALID
+LOB                     SYS_LOB0000091261C00008$$      VALID
+PACKAGE                 TIMER_SET                      VALID
+PACKAGE                 TRAPIT                         VALID
+PACKAGE                 TRAPIT_RUN                     VALID
+PACKAGE                 TT_TIMER_SET                   VALID
+PACKAGE                 UTILS                          VALID
+PACKAGE BODY            TIMER_SET                      VALID
+PACKAGE BODY            TRAPIT                         VALID
+PACKAGE BODY            TRAPIT_RUN                     VALID
+PACKAGE BODY            TT_TIMER_SET                   VALID
+PACKAGE BODY            UTILS                          VALID
+TABLE                   TT_UNITS                       VALID
+TYPE                    CHR_INT_ARR                    VALID
+TYPE                    CHR_INT_REC                    VALID
+TYPE                    L1_CHR_ARR                     VALID
+TYPE                    L1_NUM_ARR                     VALID
+TYPE                    L2_CHR_ARR                     VALID
+TYPE                    L3_CHR_ARR                     VALID
+TYPE                    L4_CHR_ARR                     VALID
+
+23 rows selected.
+```
+
+###### App Schema Objects
+[&uarr; Schema Objects Reports](#schema-objects-reports)<br />
+```
+Objects in schema app created within last minute
+
+OBJECT_TYPE             OBJECT_NAME                    STATUS
+----------------------- ------------------------------ -------
+PACKAGE                 COL_GROUP                      VALID
+PACKAGE BODY            COL_GROUP                      VALID
+SYNONYM                 CHR_INT_ARR                    VALID
+SYNONYM                 CHR_INT_REC                    VALID
+SYNONYM                 L1_CHR_ARR                     VALID
+SYNONYM                 L1_NUM_ARR                     VALID
+SYNONYM                 L2_CHR_ARR                     VALID
+SYNONYM                 L3_CHR_ARR                     VALID
+SYNONYM                 L4_CHR_ARR                     VALID
+SYNONYM                 TIMER_SET                      VALID
+SYNONYM                 TRAPIT                         VALID
+SYNONYM                 TRAPIT_RUN                     VALID
+SYNONYM                 UTILS                          VALID
+TABLE                   LINES_ET                       VALID
+
+14 rows selected.
 ```
 
 #### Manual Installation

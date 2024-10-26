@@ -1,7 +1,7 @@
 
 Database                       Time                 Version
 ------------------------------ -------------------- ------------------------------
-Start: FREE / ORCLPDB          13-OCT-2024 16:13:24 Version 23.4.0.24.05
+Start: FREE / ORCLPDB          26-OCT-2024 14:02:12 Version 23.4.0.24.05
 
 Create directory input_dir
 old   1: CREATE OR REPLACE DIRECTORY input_dir AS '&input_dir'
@@ -181,5 +181,5 @@ Grant succeeded.
 
 'END:'||TO_CHAR(SYSDATE,'DD-MON-YY
 ----------------------------------
-End: 13-OCT-2024 16:13:24
+End: 26-OCT-2024 14:02:12
 
