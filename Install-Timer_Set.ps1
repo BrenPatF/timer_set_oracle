@@ -27,14 +27,17 @@ $sysSchema = 'sys'
 $libSchema = 'lib'
 $appSchema = 'app'
 
-$installs = @(#@{folder = 'install_prereq';     script = 'drop_utils_users';     schema = $sysSchema; prmLis = @($libSchema, $appSchema)},
-              @{folder = 'install_prereq';     script = 'install_sys';          schema = $sysSchema; prmLis = @($libSchema, $appSchema, $inputPath)},
-              @{folder = 'install_prereq\lib'; script = 'install_lib_all';      schema = $libSchema; prmLis = @($appSchema)},
-              @{folder = 'install_prereq\app'; script = 'install_app_all';      schema = $appSchema; prmLis = @($libSchema)},
-              @{folder = 'lib';                script = 'install_timer_set';    schema = $libSchema; prmLis = @($appSchema)},
-              @{folder = 'app';                script = 'c_timer_set_syns';     schema = $appSchema; prmLis = @($libSchema)},
-              @{folder = 'lib';                script = 'install_timer_set_tt'; schema = $libSchema; prmLis = @()},
-              @{folder = '.';                  script = 'l_objects';            schema = $sysSchema; prmLis = @($sysSchema)},
-              @{folder = '.';                  script = 'l_objects';            schema = $libSchema; prmLis = @($libSchema)},
-              @{folder = '.';                  script = 'l_objects';            schema = $appSchema; prmLis = @($appSchema)})
-Install-OracleApp $inputPath $fileLis $installs
+$sqlInstalls = @(@{folder = 'install_prereq';     script = 'drop_utils_users.sql';     schema = $sysSchema; prmLis = @($libSchema, $appSchema)},
+                 @{folder = 'install_prereq';     script = 'install_sys.sql';          schema = $sysSchema; prmLis = @($libSchema, $appSchema, $inputPath)},
+                 @{folder = 'install_prereq\lib'; script = 'install_lib_all.sql';      schema = $libSchema; prmLis = @($appSchema)},
+                 @{folder = 'install_prereq\app'; script = 'install_app_all.sql';      schema = $appSchema; prmLis = @($libSchema)},
+                 @{folder = 'lib';                script = 'install_timer_set.sql';    schema = $libSchema; prmLis = @($appSchema)},
+                 @{folder = 'app';                script = 'c_timer_set_syns.sql';     schema = $appSchema; prmLis = @($libSchema)},
+                 @{folder = 'lib';                script = 'install_timer_set_tt.sql'; schema = $libSchema; prmLis = @()},
+                 @{folder = '.';                  script = 'l_objects.sql';            schema = $sysSchema; prmLis = @($sysSchema)},
+                 @{folder = '.';                  script = 'l_objects.sql';            schema = $libSchema; prmLis = @($libSchema)},
+                 @{folder = '.';                  script = 'l_objects.sql';            schema = $appSchema; prmLis = @($appSchema)})
+$fileCopies = [PSCustomObject]@{inputPath = $inputPath
+                                fileLis = $fileLis}
+$ret = Install-OracleApp -fileCopies $fileCopies -sqlInstalls $sqlInstalls -testMode $false
+Write-OracleApp $ret

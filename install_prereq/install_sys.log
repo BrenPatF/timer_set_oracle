@@ -1,7 +1,7 @@
 
 Database                       Time                 Version
 ------------------------------ -------------------- ------------------------------
-Start: FREE / ORCLPDB          26-OCT-2024 14:02:12 Version 23.4.0.24.05
+Start: FREE / ORCLPDB          02-FEB-2026 15:15:22 Version 23.4.0.24.05
 
 Create directory input_dir
 old   1: CREATE OR REPLACE DIRECTORY input_dir AS '&input_dir'
@@ -12,8 +12,12 @@ Directory created.
 Create lib
 old   1: CREATE USER &DEMO_USER IDENTIFIED BY &DEMO_USER
 new   1: CREATE USER lib IDENTIFIED BY lib
+CREATE USER lib IDENTIFIED BY lib
+            *
+ERROR at line 1:
+ORA-01920: user name 'LIB' conflicts with another user or role name
+Help: https://docs.oracle.com/error-help/db/ora-01920/
 
-User created.
 
 old   1: GRANT CREATE SESSION TO &DEMO_USER
 new   1: GRANT CREATE SESSION TO lib
@@ -181,5 +185,5 @@ Grant succeeded.
 
 'END:'||TO_CHAR(SYSDATE,'DD-MON-YY
 ----------------------------------
-End: 26-OCT-2024 14:02:12
+End: 02-FEB-2026 15:15:22
 

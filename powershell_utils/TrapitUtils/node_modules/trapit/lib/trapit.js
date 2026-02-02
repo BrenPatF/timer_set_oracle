@@ -2,20 +2,37 @@
 /***************************************************************************************************
 Name: trapit.js                        Author: Brendan Furey                       Date: 10-Jun-2018
 
-Component module in: The Math Function Unit Testing design pattern, implemented in nodejs.
+Component package in the 'Trapit - JavaScript Unit Testing/Formatting Utilities' module, which 
+facilitates unit testing in Oracle PL/SQL following 'The Math Function Unit Testing design pattern',
+as described here: 
 
-GitHub: https://github.com/BrenPatF/trapit_nodejs_tester
+    https://brenpatf.github.io/2023/06/05/the-math-function-unit-testing-design-pattern.html
 
-See: 'Database API Viewed As A Mathematical Function: Insights into Testing'
-    https://www.slideshare.net/brendanfurey7/database-api-viewed-as-a-mathematical-function-insights-into-testing
-    Brendan Furey, March 2018
+GitHub project for JavaScript:
 
-There is an entry point module, TrapitUtils, with two functions for JavaScript unit testing and two
-driver functionss for formatting externally-sourced results read from JSON files. This module calls
-the Trapit module to handle the results formatting.
+    https://github.com/BrenPatF/trapit_nodejs_tester
 
-There are also a helper class and three helper modules of pure functions, called by the Trapit
-module
+At the heart of the design pattern there is a language-specific unit testing driver function. This
+function reads an input JSON scenarios file, then loops over the scenarios making calls to a
+function passed in as a parameter from the calling script. The passed function acts as a 'pure'
+wrapper around calls to the unit under test. It is 'externally pure' in the sense that it is
+deterministic, and interacts externally only via parameters and return value. Where the unit under
+test reads inputs from file the wrapper writes them based on its parameters, and where the unit
+under test writes outputs to file the wrapper reads them and passes them out in its return value.
+Any file writing is reverted before exit.
+
+The driver function accumulates the output scenarios containing both expected and actual results
+in an object, from which a function writes the results in HTML and text formats.
+
+In JavaScript, the entry-point API, fmtTestUnit, calls testUnit to write the formatted results
+files, then output a summary.
+
+There is an entry point package, TrapitUtils, with three functions for JavaScript unit testing and
+three for formatting externally-sourced results read from JSON files. This package calls the Trapit
+package to handle the results formatting.
+
+There are also a helper class and three helper packages of pure functions, called by the Trapit
+package.
 ====================================================================================================
 |  Module       |  Notes                                                                           |
 |==================================================================================================|
@@ -374,7 +391,7 @@ const self = module.exports = {
   getDelimiter: () => {return DELIM;},
   /*************************************************************************************************
 
-  getUTResults: Get results, returning as object called by the mkUTResultsFolder* printing methods
+  getUTResults: Get results, returning an object called by the mkUTResultsFolder printing methods
 
   *************************************************************************************************/
   getUTResults: (meta, scenarios) => {
